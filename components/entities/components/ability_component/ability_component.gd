@@ -8,33 +8,37 @@ signal cooldown_finished(slot_name: StringName)
 @export var effect_attachment: Node2D
 
 @export_subgroup("Ability Settings")
-@export var slots: Array[AbilitySlot] = []
+@onready var slots: Dictionary[StringName, AbilityData] = {}
 
 var _cooldowns: Dictionary[StringName, float] = {} # Spell &id and cooldown in sec
 
-func _unhandled_input(event: InputEvent) -> void:
-	for slot in slots:
-		if event.is_action_pressed(slot.input_action):
-			try_cast(slot)
+func _init() -> void:
+	for _key: String in Utils.ability_slots.keys():
+		slots[StringName(_key.to_lower())] = null
 
-func try_cast(slot: AbilitySlot) -> void:
-	if slot == null or slot.ability == null:
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_type():
+		for slot in slots:
+			if event.is_action_pressed(slot):
+				try_cast(slot, slots[slot])
+
+func try_cast(slot: StringName, data: AbilityData) -> void:
+	if data == null:
 		return
-	if slot.ability.effect_scene == null:
-		push_warning("Ability '%s' has no effect_scene" % slot.ability.display_name)
+	if data.effect_scene == null:
+		push_warning("Ability '%s' has no effect_scene" % data.display_name)
 		return
 	if is_on_cooldown(slot):
 		return
-	_cast(slot)
+	_cast(slot, data)
 
-func _cast(slot: AbilitySlot) -> void:
-	var data := slot.ability
+func _cast(slot: StringName, data: AbilityData) -> void:
 	var effect := data.effect_scene.instantiate() as AbilityEffect
 	get_parent().add_child(effect)
 	effect.activate(get_parent(), _aim_direction(), data)
 
-	_cooldowns[slot.slot_name] = data.cooldown
-	ability_cast.emit(slot.slot_name, data)
+	_cooldowns[slot] = data.cooldown
+	ability_cast.emit(slot, data)
 
 func _process(delta: float) -> void:
 	if _cooldowns.is_empty():
@@ -49,35 +53,32 @@ func _process(delta: float) -> void:
 # GETTER FUNCTIONS
 # ================
 
-func is_on_cooldown(slot: AbilitySlot) -> bool:
-	return _cooldowns.has(slot.slot_name) and _cooldowns[slot.slot_name] > 0.0
+func is_on_cooldown(slot: StringName) -> bool:
+	return _cooldowns.has(slot) and _cooldowns[slot] > 0.0
 
 func cooldown_remaining(slot_name: StringName) -> float:
 	return _cooldowns.get(slot_name, 0.0)
 
-func find_slot(slot_name: StringName) -> AbilitySlot:
-	for slot in slots:
-		if slot.slot_name == slot_name:
-			return slot
-	return null
+func find_slot(slot_name: StringName) -> AbilityData:
+	return slots[slot_name]
 
 # ===================
 # EQUIPMENT FUNCTIONS
 # ===================
 
-func equip(slot_name: StringName, data: AbilityData) -> AbilityData:
-	var slot := find_slot(slot_name)
-	if slot == null:
-		push_warning("AbilityComponent has no slot named %s" % slot_name)
+func equip(slot: StringName, new_data: AbilityData) -> AbilityData:
+	var data := slots[slot]
+	if data == null:
+		push_warning("AbilityComponent has no slot named %s" % slot)
 		return null
-	var previous := slot.ability
-	slot.ability = data
+	var previous := data
+	slots[slot] = new_data
 	
-	_cooldowns.erase(slot_name)
+	_cooldowns.erase(slot)
 	return previous
 
-func unequip(slot_name: StringName) -> AbilityData:
-	return equip(slot_name, null)
+func unequip(slot: StringName) -> AbilityData:
+	return equip(slot, null)
 
 #
 

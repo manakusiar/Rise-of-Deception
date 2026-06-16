@@ -1,3 +1,7 @@
 extends Node
 
-enum ability_types {primary, secondary}
+enum ability_slots {
+	PRIMARY,
+	SECONDARY,
+	UTILITY
+}
