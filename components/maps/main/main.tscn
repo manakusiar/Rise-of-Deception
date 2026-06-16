@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bekk1rqcd3nk7"]
+
+[ext_resource type="PackedScene" uid="uid://b4by8jpbx7hw2" path="res://components/maps/map1/map1.tscn" id="1_tdon8"]
+
+[node name="Main" type="Node" unique_id=630365655]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1879420564]
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1856833384]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Map1" parent="SubViewportContainer/SubViewport" unique_id=657960428 instance=ExtResource("1_tdon8")]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer" unique_id=543919973]
+position = Vector2(320, 180)
+zoom = Vector2(2, 2)
+
+[node name="UI" type="Control" parent="." unique_id=1570142072]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

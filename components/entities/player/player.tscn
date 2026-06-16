@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://ciw3lcn0jn2iy"]
+
+[ext_resource type="Script" uid="uid://dvjhkfp0m5gba" path="res://components/entities/player/player.gd" id="1_4w2h4"]
+[ext_resource type="Texture2D" uid="uid://dahv58ftrcj7" path="res://components/entities/player/sprites/player_idle-Sheet.png" id="2_yrs2i"]
+[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://components/entities/components/physics_component/physics_component.gd" id="3_omgnn"]
+[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://components/entities/player/sprites/player_run-Sheet.png" id="3_wdtix"]
+[ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://components/entities/components/input_component/player_input_component/player_input_component.gd" id="4_k87f5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
+size = Vector2(16, 19)
+
+[sub_resource type="Animation" id="Animation_omgnn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_yrs2i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4w2h4"]
+resource_name = "idle"
+length = 0.5000125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_yrs2i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_k87f5"]
+resource_name = "run"
+length = 0.66667503
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.41666666, 0.5, 0.5833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_wdtix")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrs2i"]
+_data = {
+&"RESET": SubResource("Animation_omgnn"),
+&"idle": SubResource("Animation_4w2h4"),
+&"run": SubResource("Animation_k87f5")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component")]
+script = ExtResource("1_4w2h4")
+physics_component = NodePath("Components/PhysicsComponent")
+input_component = NodePath("Components/PlayerInputComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_wdtix")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1197786865]
+texture = ExtResource("2_yrs2i")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040103791]
+libraries/ = SubResource("AnimationLibrary_yrs2i")
+autoplay = &"idle"
+
+[node name="Components" type="Node" parent="." unique_id=917482435]
+
+[node name="PhysicsComponent" type="Node" parent="Components" unique_id=2139792021 node_paths=PackedStringArray("entity")]
+script = ExtResource("3_omgnn")
+entity = NodePath("../..")
+metadata/_custom_type_script = "uid://dyvgnrsv0rgiw"
+
+[node name="PlayerInputComponent" type="Node" parent="Components" unique_id=1186757926]
+script = ExtResource("4_k87f5")
+metadata/_custom_type_script = "uid://s4kpitl1pnpm"
