@@ -1,12 +1,12 @@
 extends CharacterBody2D
-class_name Player
+class_name BasicEnemy
 
 @export_subgroup("Nodes/Components")
 @export var physics_component: PhysicsComponent 
 @export var input_component: InputComponent
 @export var ability_component: AbilityComponent
 
-const SPEED := 400.0
+const SPEED := 100.0
 const JUMP_VELOCITY := -400.0
 
 func _ready() -> void:

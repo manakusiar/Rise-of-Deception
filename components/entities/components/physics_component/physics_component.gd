@@ -2,6 +2,7 @@ class_name PhysicsComponent
 extends Node
 
 @export var entity: CharacterBody2D
+@export var has_gravity: bool = true
 
 var velocity:
 	get():
@@ -11,7 +12,7 @@ var velocity:
 
 func Handle_Physics(delta: float, movement_direction: Vector2) -> void:
 	# Add the gravity.
-	if not entity.is_on_floor():
+	if has_gravity and not entity.is_on_floor():
 		velocity += entity.get_gravity() * delta
 
 	# Get the input direction and handle the movement/deceleration.
