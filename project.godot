@@ -27,6 +27,11 @@ window/size/viewport_height=360
 window/size/window_width_override=1280
 window/size/window_height_override=720
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [input]
 
 look_up={

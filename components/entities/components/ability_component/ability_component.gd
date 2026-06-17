@@ -12,33 +12,13 @@ signal cooldown_finished(slot_name: StringName)
 
 var _cooldowns: Dictionary[StringName, float] = {} # Spell &id and cooldown in sec
 
-func _init() -> void:
+# ===============
+# ENGINE CALLBACK
+# ===============
+
+func _ready() -> void:
 	for _key: String in Utils.ability_slots.keys():
-		slots[StringName(_key.to_lower())] = null
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_type():
-		for slot in slots:
-			if event.is_action_pressed(slot):
-				try_cast(slot, slots[slot])
-
-func try_cast(slot: StringName, data: AbilityData) -> void:
-	if data == null:
-		return
-	if data.effect_scene == null:
-		push_warning("Ability '%s' has no effect_scene" % data.display_name)
-		return
-	if is_on_cooldown(slot):
-		return
-	_cast(slot, data)
-
-func _cast(slot: StringName, data: AbilityData) -> void:
-	var effect := data.effect_scene.instantiate() as AbilityEffect
-	get_parent().add_child(effect)
-	effect.activate(get_parent(), _aim_direction(), data)
-
-	_cooldowns[slot] = data.cooldown
-	ability_cast.emit(slot, data)
+		slots[StringName(_key.to_lower()) + "_ability"] = null
 
 func _process(delta: float) -> void:
 	if _cooldowns.is_empty():
@@ -48,6 +28,35 @@ func _process(delta: float) -> void:
 		if _cooldowns[key] <= 0.0:
 			_cooldowns.erase(key)
 			cooldown_finished.emit(key)
+
+# =======
+# CASTING
+# =======
+
+func try_cast(slot: StringName) -> void:
+	var _data = slots[slot]
+	
+	
+	if _data == null:
+		return
+	if _data.effect_scene == null:
+		push_warning("Ability '%s' has no effect_scene" % _data.display_name)
+		return
+	if is_on_cooldown(slot):
+		return
+	
+	_cast(slot)
+
+func _cast(slot: StringName) -> void:
+	print("Casting ", slot)
+	var _data = slots[slot]
+	var effect := _data.effect_scene.instantiate() as AbilityEffect
+	
+	get_parent().add_child(effect)
+	effect.activate(get_parent(), _aim_direction(), _data)
+
+	_cooldowns[slot] = _data.cooldown
+	ability_cast.emit(slot, _data)
 
 # ================
 # GETTER FUNCTIONS
@@ -61,6 +70,10 @@ func cooldown_remaining(slot_name: StringName) -> float:
 
 func find_slot(slot_name: StringName) -> AbilityData:
 	return slots[slot_name]
+
+func _aim_direction() -> Vector2:
+	var caster := get_parent()
+	return caster.transform.x if caster is Node2D else Vector2.RIGHT
 
 # ===================
 # EQUIPMENT FUNCTIONS
@@ -79,9 +92,3 @@ func equip(slot: StringName, new_data: AbilityData) -> AbilityData:
 
 func unequip(slot: StringName) -> AbilityData:
 	return equip(slot, null)
-
-#
-
-func _aim_direction() -> Vector2:
-	var caster := get_parent()
-	return caster.transform.x if caster is Node2D else Vector2.RIGHT

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://components/entities/components/physics_component/physics_component.gd" id="3_omgnn"]
 [ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://components/entities/player/sprites/player_run-Sheet.png" id="3_wdtix"]
 [ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://components/entities/components/input_component/player_input_component/player_input_component.gd" id="4_k87f5"]
+[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/components/ability_component/ability_component.gd" id="6_2573b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
 size = Vector2(16, 19)
@@ -175,10 +176,11 @@ _data = {
 &"run": SubResource("Animation_k87f5")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component")]
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component")]
 script = ExtResource("1_4w2h4")
 physics_component = NodePath("Components/PhysicsComponent")
 input_component = NodePath("Components/PlayerInputComponent")
+ability_component = NodePath("Components/AbilityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
 position = Vector2(0, 6.5)
@@ -195,10 +197,17 @@ autoplay = &"idle"
 [node name="Components" type="Node" parent="." unique_id=917482435]
 
 [node name="PhysicsComponent" type="Node" parent="Components" unique_id=2139792021 node_paths=PackedStringArray("entity")]
+unique_name_in_owner = true
 script = ExtResource("3_omgnn")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://dyvgnrsv0rgiw"
 
 [node name="PlayerInputComponent" type="Node" parent="Components" unique_id=1186757926]
+unique_name_in_owner = true
 script = ExtResource("4_k87f5")
 metadata/_custom_type_script = "uid://s4kpitl1pnpm"
+
+[node name="AbilityComponent" type="Node" parent="Components" unique_id=1350653665]
+unique_name_in_owner = true
+script = ExtResource("6_2573b")
+metadata/_custom_type_script = "uid://sdxn04232pti"
