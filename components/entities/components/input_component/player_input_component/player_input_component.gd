@@ -6,7 +6,7 @@ func _init() -> void:
 		abilities.append(StringName(_key.to_lower() + "_ability"))
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_type():
+	if event.is_action_type() and !event.is_echo():
 		# Press and release signals
 		var event_and_signal: Dictionary[String, Signal]= {
 			"attack": Attack,

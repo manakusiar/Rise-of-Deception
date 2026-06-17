@@ -21,5 +21,6 @@ func player_left_range(body: Node2D) -> void:
 func Get_Movement_Direction() -> Vector2:
 	movement_direction = Vector2.ZERO
 	if current_target:
-		movement_direction -= (entity.global_position.normalized() + current_target.global_position.normalized())/2
+		var _angle = entity.global_position.direction_to(current_target.global_position)
+		movement_direction = _angle
 	return movement_direction

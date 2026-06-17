@@ -1,79 +1,14 @@
-[gd_scene format=3 uid="uid://cvwdh8folhjmp"]
+[gd_scene format=3 uid="uid://ciw3lcn0jn2iy"]
 
-[ext_resource type="Script" uid="uid://bi38ke53ksjqe" path="res://components/entities/flying_enemy/flying_enemy.gd" id="1_5bxrj"]
-[ext_resource type="Script" uid="uid://4j5ry46byrwh" path="res://components/entities/components/stat_component/stat.gd" id="2_kqsld"]
-[ext_resource type="Curve" uid="uid://brqhenrycwvri" path="res://components/entities/components/stat_component/stat_curves/max_hp_curve.tres" id="3_brlqf"]
-[ext_resource type="Texture2D" uid="uid://b4wym735q62d6" path="res://components/entities/flying_enemy/sprites/flying_enemy_idle_sheet.png" id="3_k6cn0"]
-[ext_resource type="Script" uid="uid://cioghh6igp4ds" path="res://components/entities/components/stat_component/stats.gd" id="4_18isc"]
-[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://components/entities/player/sprites/player_run-Sheet.png" id="4_d5i0o"]
-[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://components/entities/components/physics_component/physics_component.gd" id="5_07baq"]
-[ext_resource type="Script" uid="uid://n7lwy8lxsbes" path="res://components/entities/components/input_component/enemy_input_component/platform/enemy_flying_input_component.gd" id="6_5bxrj"]
-[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/components/ability_component/ability_component.gd" id="6_i34wm"]
-
-[sub_resource type="Resource" id="Resource_b1uqo"]
-script = ExtResource("2_kqsld")
-base_value = 10.0
-is_buffable = true
-is_scalable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_vkfg8"]
-script = ExtResource("2_kqsld")
-base_value = 10.0
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_0eorv"]
-script = ExtResource("2_kqsld")
-base_value = 10.0
-is_buffable = true
-is_scalable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_qd1cg"]
-script = ExtResource("2_kqsld")
-base_value = 10.0
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_cfe6a"]
-script = ExtResource("2_kqsld")
-base_value = 16.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_jdqu6"]
-script = ExtResource("2_kqsld")
-base_value = 64.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_16bl4"]
-script = ExtResource("2_kqsld")
-base_value = 400.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_hce6m"]
-script = ExtResource("2_kqsld")
-base_value = -400.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_q4rrw"]
-script = ExtResource("4_18isc")
-all_stats = Dictionary[int, ExtResource("2_kqsld")]({
-0: SubResource("Resource_b1uqo"),
-1: SubResource("Resource_vkfg8"),
-2: SubResource("Resource_0eorv"),
-3: SubResource("Resource_qd1cg"),
-4: SubResource("Resource_cfe6a"),
-5: SubResource("Resource_jdqu6"),
-6: SubResource("Resource_16bl4"),
-7: SubResource("Resource_hce6m")
-})
-metadata/_custom_type_script = "uid://cioghh6igp4ds"
+[ext_resource type="Script" uid="uid://dvjhkfp0m5gba" path="res://components/entities/player/player.gd" id="1_4w2h4"]
+[ext_resource type="Texture2D" uid="uid://dahv58ftrcj7" path="res://components/entities/player/sprites/player_idle-Sheet.png" id="2_yrs2i"]
+[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://components/entities/components/physics_component/physics_component.gd" id="3_omgnn"]
+[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://components/entities/player/sprites/player_run-Sheet.png" id="3_wdtix"]
+[ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://components/entities/components/input_component/player_input_component/player_input_component.gd" id="4_k87f5"]
+[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/components/ability_component/ability_component.gd" id="6_2573b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
-size = Vector2(10, 11)
+size = Vector2(16, 19)
 
 [sub_resource type="Animation" id="Animation_omgnn"]
 length = 0.001
@@ -87,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_k6cn0")]
+"values": [ExtResource("2_yrs2i")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -141,7 +76,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_k6cn0")]
+"values": [ExtResource("2_yrs2i")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -231,7 +166,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_d5i0o")]
+"values": [ExtResource("3_wdtix")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yrs2i"]
@@ -241,24 +176,20 @@ _data = {
 &"run": SubResource("Animation_k87f5")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncued"]
-size = Vector2(500, 200)
-
-[node name="FlyingEnemy" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component")]
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component")]
 collision_layer = 2
-script = ExtResource("1_5bxrj")
+script = ExtResource("1_4w2h4")
 physics_component = NodePath("Components/PhysicsComponent")
-input_component = NodePath("Components/EnemyFlyingInputComponent")
+input_component = NodePath("Components/PlayerInputComponent")
 ability_component = NodePath("Components/AbilityComponent")
-stats = SubResource("Resource_q4rrw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
-position = Vector2(0, -5.5)
+position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_wdtix")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1197786865]
-position = Vector2(0, -13)
-texture = ExtResource("3_k6cn0")
+position = Vector2(0, -16)
+texture = ExtResource("2_yrs2i")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040103791]
@@ -269,28 +200,17 @@ autoplay = &"idle"
 
 [node name="PhysicsComponent" type="Node" parent="Components" unique_id=2139792021 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
-script = ExtResource("5_07baq")
+script = ExtResource("3_omgnn")
 entity = NodePath("../..")
-has_gravity = false
+has_gravity = null
 metadata/_custom_type_script = "uid://dyvgnrsv0rgiw"
+
+[node name="PlayerInputComponent" type="Node" parent="Components" unique_id=1186757926]
+unique_name_in_owner = true
+script = ExtResource("4_k87f5")
+metadata/_custom_type_script = "uid://s4kpitl1pnpm"
 
 [node name="AbilityComponent" type="Node" parent="Components" unique_id=1350653665]
 unique_name_in_owner = true
-script = ExtResource("6_i34wm")
+script = ExtResource("6_2573b")
 metadata/_custom_type_script = "uid://sdxn04232pti"
-
-[node name="EnemyFlyingInputComponent" type="Node" parent="Components" unique_id=182244703 node_paths=PackedStringArray("player_detection_area", "entity")]
-unique_name_in_owner = true
-script = ExtResource("6_5bxrj")
-player_detection_area = NodePath("../../PlayerDetection")
-entity = NodePath("../..")
-metadata/_custom_type_script = "uid://n7lwy8lxsbes"
-
-[node name="PlayerDetection" type="Area2D" parent="." unique_id=2028425337]
-visible = false
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=1988532873]
-shape = SubResource("RectangleShape2D_ncued")
-debug_color = Color(0.99607843, 0, 0.16470589, 0.23529412)

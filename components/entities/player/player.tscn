@@ -204,9 +204,10 @@ script = ExtResource("3_omgnn")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://dyvgnrsv0rgiw"
 
-[node name="PlayerInputComponent" type="Node" parent="Components" unique_id=1186757926]
+[node name="PlayerInputComponent" type="Node" parent="Components" unique_id=1186757926 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
 script = ExtResource("4_k87f5")
+entity = NodePath("../..")
 metadata/_custom_type_script = "uid://s4kpitl1pnpm"
 
 [node name="AbilityComponent" type="Node" parent="Components" unique_id=1350653665]

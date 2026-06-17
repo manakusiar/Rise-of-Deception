@@ -1,11 +1,76 @@
 [gd_scene format=3 uid="uid://dgegpg6nxyv0l"]
 
 [ext_resource type="Script" uid="uid://d0m11inhhnfrd" path="res://components/entities/enemy/enemy.gd" id="1_482b7"]
+[ext_resource type="Script" uid="uid://4j5ry46byrwh" path="res://components/entities/components/stat_component/stat.gd" id="2_ls67w"]
 [ext_resource type="Texture2D" uid="uid://bdenyrbnj1838" path="res://components/entities/enemy/sprites/enemy_idle_sheet.png" id="3_482b7"]
 [ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://components/entities/player/sprites/player_run-Sheet.png" id="3_kcewl"]
+[ext_resource type="Curve" uid="uid://brqhenrycwvri" path="res://components/entities/components/stat_component/stat_curves/max_hp_curve.tres" id="3_oyrrt"]
+[ext_resource type="Script" uid="uid://cioghh6igp4ds" path="res://components/entities/components/stat_component/stats.gd" id="4_3y4si"]
 [ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://components/entities/components/physics_component/physics_component.gd" id="4_kek3w"]
 [ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/components/ability_component/ability_component.gd" id="6_cfxg6"]
 [ext_resource type="Script" uid="uid://c44y8xccti57p" path="res://components/entities/components/input_component/enemy_input_component/flying/enemy_platform_input_component.gd" id="7_ncued"]
+
+[sub_resource type="Resource" id="Resource_b1uqo"]
+script = ExtResource("2_ls67w")
+base_value = 10.0
+is_buffable = true
+is_scalable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_vkfg8"]
+script = ExtResource("2_ls67w")
+base_value = 10.0
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_0eorv"]
+script = ExtResource("2_ls67w")
+base_value = 10.0
+is_buffable = true
+is_scalable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_qd1cg"]
+script = ExtResource("2_ls67w")
+base_value = 10.0
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_cfe6a"]
+script = ExtResource("2_ls67w")
+base_value = 16.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_jdqu6"]
+script = ExtResource("2_ls67w")
+base_value = 64.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_16bl4"]
+script = ExtResource("2_ls67w")
+base_value = 600.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_hce6m"]
+script = ExtResource("2_ls67w")
+base_value = -400.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_52oos"]
+script = ExtResource("4_3y4si")
+all_stats = Dictionary[int, ExtResource("2_ls67w")]({
+0: SubResource("Resource_b1uqo"),
+1: SubResource("Resource_vkfg8"),
+2: SubResource("Resource_0eorv"),
+3: SubResource("Resource_qd1cg"),
+4: SubResource("Resource_cfe6a"),
+5: SubResource("Resource_jdqu6"),
+6: SubResource("Resource_16bl4"),
+7: SubResource("Resource_hce6m")
+})
+metadata/_custom_type_script = "uid://cioghh6igp4ds"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
 size = Vector2(10, 14)
@@ -185,6 +250,7 @@ script = ExtResource("1_482b7")
 physics_component = NodePath("Components/PhysicsComponent")
 input_component = NodePath("Components/EnemyPlatformInputComponent")
 ability_component = NodePath("Components/AbilityComponent")
+stats = SubResource("Resource_52oos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
 position = Vector2(0, -7)
