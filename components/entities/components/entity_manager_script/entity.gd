@@ -10,8 +10,6 @@ extends CharacterBody2D
 @export var stats: Stats = preload("uid://bm8ogs5nwbkts")
 
 func _ready() -> void:
-	#print(name, ": ", EntityStats.get_all_stats())
-	
 	input_component.Jump.connect(_input_jump)
 	input_component.Attack.connect(_input_attack)
 	input_component.Ability.connect(_input_ability)

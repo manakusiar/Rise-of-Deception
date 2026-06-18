@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://components/entities/components/input_component/player_input_component/player_input_component.gd" id="4_k87f5"]
 [ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/components/ability_component/ability_component.gd" id="6_2573b"]
 [ext_resource type="Script" uid="uid://wrf4grbly5lk" path="res://components/entities/components/inventory_component/inventory_component.gd" id="7_8adti"]
+[ext_resource type="Script" uid="uid://bobsccqugkktj" path="res://components/entities/components/inventory_component/item_data.gd" id="8_vkfg8"]
+[ext_resource type="Script" uid="uid://cnoncage611up" path="res://components/items/test_item/test_item_data.gd" id="9_qvju1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
 size = Vector2(16, 19)
@@ -177,6 +179,10 @@ _data = {
 &"run": SubResource("Animation_k87f5")
 }
 
+[sub_resource type="Resource" id="Resource_8adti"]
+script = ExtResource("9_qvju1")
+metadata/_custom_type_script = "uid://cnoncage611up"
+
 [node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component")]
 collision_layer = 2
 script = ExtResource("1_4w2h4")
@@ -216,7 +222,11 @@ unique_name_in_owner = true
 script = ExtResource("6_2573b")
 metadata/_custom_type_script = "uid://sdxn04232pti"
 
-[node name="InventoryComponent" type="Node" parent="Components" unique_id=772012437]
+[node name="InventoryComponent" type="Node" parent="Components" unique_id=772012437 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
 script = ExtResource("7_8adti")
+inventory = Dictionary[int, ExtResource("8_vkfg8")]({
+0: SubResource("Resource_8adti")
+})
+entity = NodePath("../..")
 metadata/_custom_type_script = "uid://wrf4grbly5lk"

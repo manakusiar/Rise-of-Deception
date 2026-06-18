@@ -25,8 +25,8 @@ func _init() -> void:
 	setup_stats.call_deferred()
 
 func setup_stats() -> void:
-	for _key in all_stats:
-		print(Utils.stat_names.keys()[_key], ": ", all_stats[_key].value)
+	#for _key in all_stats:
+		#print(Utils.stat_names.keys()[_key], ": ", all_stats[_key].value)
 	recalculate_stats()
 
 # =======================
@@ -48,6 +48,9 @@ func recalculate_stats() -> void:
 				if not stat_addends.has(stat_name):
 					stat_addends[stat_name] = 1.0
 				stat_addends[stat_name] += buff.buff_amount
+		#for i in buff.get_property_list():
+			#print(i.name, ": ", buff.get(i.name))
+		print(buff.buff_amount)
 	
 	# Calculate stats based on level
 	var stat_sample_pos: float = float(level) / 100.0 - 0.01
@@ -57,6 +60,7 @@ func recalculate_stats() -> void:
 	# Apply buffs
 	for stat_name in stat_multiplier:
 		all_stats[stat_name].value *= stat_multiplier[stat_name]
+		print(stat_name, " multiplied by: ", stat_multiplier[stat_name])
 	for stat_name in stat_addends:
 		all_stats[stat_name].value += stat_addends[stat_name]
 
@@ -80,7 +84,7 @@ func get_stat(_stat: Utils.stat_names) -> float:
 	if all_stats.has(_stat):
 		return all_stats[_stat].get_value()
 	else:
-		print(Utils.stat_names.keys()[_stat])
+		#print(Utils.stat_names.keys()[_stat])
 		push_error("Trying to GET %s, wihtout it being present" % Utils.stat_names.keys()[_stat])
 		return -4
 func set_stat(_stat: Utils.stat_names, _value: float):
