@@ -16,3 +16,9 @@ enum stat_names {
 	WALK_ACCELERATION,
 	JUMP_VELOCITY
 }
+
+enum ItemID {
+	TEST_ITEM,
+	MAGIC_ITEM,
+	BUFF_ITEM
+}

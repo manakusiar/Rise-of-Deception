@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*uid://df2ve3gmi2inv"
 SignalBus="*uid://d0aw5pg2lgidf"
+AllItems="*uid://f7sdsw2m65lb"
 
 [display]
 

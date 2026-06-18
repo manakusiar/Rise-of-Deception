@@ -22,9 +22,9 @@ var max_vertical_velocity:
 
 func Handle_Physics(delta: float, movement_direction: Vector2) -> void:
 	var direction := movement_direction
-	if has_gravity: 
+	if has_gravity:
 		direction.y = 0
-		if !entity.is_on_floor():               
+		if !entity.is_on_floor():
 			velocity += entity.get_gravity() * delta
 	
 	if direction:
