@@ -54,7 +54,7 @@ metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
 [resource]
 script = ExtResource("3_a3chc")
-all_stats = Dictionary[int, ExtResource("1_4tc8m")]({
+all_stats = Dictionary[Variant, ExtResource("1_4tc8m")]({
 0: SubResource("Resource_b1uqo"),
 1: SubResource("Resource_vkfg8"),
 2: SubResource("Resource_0eorv"),
