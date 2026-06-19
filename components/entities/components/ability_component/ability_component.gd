@@ -12,6 +12,16 @@ signal cooldown_finished(slot_name: StringName)
 
 var _cooldowns: Dictionary[StringName, float] = {} # Spell &id and cooldown in sec
 
+# ==================
+# SAVING AND LOADING
+# ==================
+
+func Get_Save_Data() -> Dictionary:
+	return slots
+
+func Load_Save_Data(data: Dictionary[StringName, AbilityData]) -> void:
+	slots = data
+
 # ===============
 # ENGINE CALLBACK
 # ===============

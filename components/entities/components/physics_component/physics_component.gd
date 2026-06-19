@@ -20,6 +20,15 @@ var max_horizontal_velocity:
 var max_vertical_velocity:
 	get(): return stats.get_stat(Utils.stat_names.MAX_VERTICAL_VELOCITY)
 
+func Get_Save_Data() -> Dictionary:
+	return {
+		&"position": entity.position
+	}
+
+func Load_Save_Data(data: Dictionary) -> void:
+	print("PHYSICS LOADING: ", data)
+	entity.position = data[&"position"]
+
 func Handle_Physics(delta: float, movement_direction: Vector2) -> void:
 	var direction := movement_direction
 	if has_gravity:

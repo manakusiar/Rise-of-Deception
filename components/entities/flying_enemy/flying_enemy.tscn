@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cioghh6igp4ds" path="res://components/entities/components/stat_component/stats.gd" id="4_18isc"]
 [ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://components/entities/player/sprites/player_run-Sheet.png" id="4_d5i0o"]
 [ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://components/entities/components/physics_component/physics_component.gd" id="5_07baq"]
+[ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://globals/data_manager/persistent_id.gd" id="5_brlqf"]
 [ext_resource type="Script" uid="uid://n7lwy8lxsbes" path="res://components/entities/components/input_component/enemy_input_component/platform/enemy_flying_input_component.gd" id="6_5bxrj"]
 [ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/components/ability_component/ability_component.gd" id="6_i34wm"]
 
@@ -244,13 +245,19 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncued"]
 size = Vector2(500, 200)
 
-[node name="FlyingEnemy" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component")]
+[node name="FlyingEnemy" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "persistent_id") groups=["Saveable"]]
 collision_layer = 2
 script = ExtResource("1_5bxrj")
 physics_component = NodePath("Components/PhysicsComponent")
 input_component = NodePath("Components/EnemyFlyingInputComponent")
 ability_component = NodePath("Components/AbilityComponent")
+persistent_id = NodePath("PersistentID")
 stats = SubResource("Resource_q4rrw")
+
+[node name="PersistentID" type="Node" parent="." unique_id=1162751935]
+script = ExtResource("5_brlqf")
+unique_id = &"ibq269gyl5kcape6"
+metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
 position = Vector2(0, -5.5)

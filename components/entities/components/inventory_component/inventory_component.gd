@@ -8,6 +8,12 @@ var item_node_group: Node2D
 func _ready() -> void:
 	load_item_node_group()
 
+func Get_Save_Data() -> Dictionary:
+	return inventory
+
+func Load_Save_Data(data: Dictionary[Utils.ItemID, ItemData]) -> void:
+	inventory = data
+
 func load_item_node_group() -> void:
 	item_node_group = Node2D.new()
 	entity.add_child.call_deferred(item_node_group)

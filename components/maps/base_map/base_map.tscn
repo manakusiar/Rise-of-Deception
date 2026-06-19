@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://csy1pyeuajw0y"]
+
+[ext_resource type="Script" uid="uid://bawnen6pyi2eh" path="res://components/maps/base_map/map.gd" id="1_aqab4"]
+[ext_resource type="PackedScene" uid="uid://x7aj76n2xwso" path="res://components/maps/base_map/world_boundries/world_boundries.tscn" id="2_qhvmp"]
+
+[node name="BaseMap" type="Node2D" unique_id=1011221211]
+script = ExtResource("1_aqab4")
+
+[node name="WorldBoundries" parent="." unique_id=1285668556 instance=ExtResource("2_qhvmp")]
+position = Vector2(4, 1)
+size = Vector2(640, 240)

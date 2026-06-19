@@ -29,6 +29,20 @@ func setup_stats() -> void:
 		#print(Utils.stat_names.keys()[_key], ": ", all_stats[_key].value)
 	recalculate_stats()
 
+# ==================
+# SAVING AND LOADING
+# ==================
+
+func Get_Save_Data() -> Dictionary:
+	return {
+		"stats": all_stats,
+		"stat_buffs": stat_buffs
+	}
+
+func Load_Save_Data(data: Dictionary) -> void:
+	all_stats = data["stats"]
+	stat_buffs = data["stat_buffs"]
+
 # =======================
 # HADNDLING DYNAMIC STATS
 # =======================
