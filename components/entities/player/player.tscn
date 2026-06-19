@@ -184,7 +184,7 @@ _data = {
 script = ExtResource("9_qvju1")
 metadata/_custom_type_script = "uid://cnoncage611up"
 
-[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "persistent_id") groups=["Saveable"]]
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "persistent_id") groups=["Player", "Saveable"]]
 collision_layer = 2
 script = ExtResource("1_4w2h4")
 physics_component = NodePath("Components/PhysicsComponent")

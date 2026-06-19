@@ -64,7 +64,6 @@ func recalculate_stats() -> void:
 				stat_addends[stat_name] += buff.buff_amount
 		#for i in buff.get_property_list():
 			#print(i.name, ": ", buff.get(i.name))
-		print(buff.buff_amount)
 	
 	# Calculate stats based on level
 	var stat_sample_pos: float = float(level) / 100.0 - 0.01
