@@ -1,18 +1,19 @@
-class_name MapPassage
+class_name RoomPassage
 extends TileMapLayer
 
 enum path_direction {
 	LEFT,
 	RIGHT,
-	UP,
-	DOWN
+	TOP,
+	BOTTOM
 }
 
 @export var area: Area2D
 @export var collision_shape: CollisionShape2D
-@export var player_tp_point: Node2D
 @export var steal_tile_map: TileMapLayer
 @export var direction: path_direction
+
+@export var player_tp_position: Vector2
 
 var open: bool = false
 
@@ -39,9 +40,10 @@ func _ready() -> void:
 			min_pos = to_global(map_to_local(coords).min(min_pos))
 			max_pos = to_global(map_to_local(coords).max(max_pos))
 	
-	collision_shape.position = (min_pos + max_pos) / 2
-	collision_shape.scale = abs(max_pos - min_pos) / collision_shape.shape.size + Vector2.ONE
-	collision_shape.visible = true
+	if min_pos != Vector2.INF:
+		collision_shape.position = (min_pos + max_pos) / 2
+		collision_shape.scale = abs(max_pos - min_pos) / collision_shape.shape.size + Vector2.ONE
+		collision_shape.visible = true
 	
 
 func Setup(_open: bool) -> void:

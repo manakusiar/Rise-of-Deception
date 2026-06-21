@@ -1,16 +1,24 @@
 [gd_scene format=4 uid="uid://csy1pyeuajw0y"]
 
-[ext_resource type="Script" uid="uid://bawnen6pyi2eh" path="res://components/scenes/maps/base_map/map.gd" id="1_aqab4"]
-[ext_resource type="PackedScene" uid="uid://x7aj76n2xwso" path="res://components/scenes/maps/base_map/world_boundries/world_boundries.tscn" id="2_qhvmp"]
-[ext_resource type="TileSet" uid="uid://b3mu7teosgmps" path="res://components/tilesets/base-wall/base_wall_tileset.tres" id="3_2s62j"]
-[ext_resource type="Script" uid="uid://b3d0mif6g34k1" path="res://components/scenes/maps/base_map/passage/passage.gd" id="4_a5t3k"]
-[ext_resource type="TileSet" uid="uid://draedvf7k55w6" path="res://components/tilesets/passage_tileset/passage_tileset.tres" id="4_x530g"]
+[ext_resource type="Script" uid="uid://bawnen6pyi2eh" path="res://components/scenes/maps/base_room/room.gd" id="1_aqab4"]
+[ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://globals/data_manager/persistent_id.gd" id="2_kqjpx"]
+[ext_resource type="PackedScene" uid="uid://x7aj76n2xwso" path="res://components/scenes/maps/base_room/world_boundries/world_boundries.tscn" id="2_qhvmp"]
+[ext_resource type="TileSet" uid="uid://b3mu7teosgmps" path="res://components/tilesets/base_wall/base_wall_tileset.tres" id="3_2s62j"]
+[ext_resource type="PackedScene" uid="uid://bx5lmrk66xmo3" path="res://components/scenes/maps/base_room/passage/passage.tscn" id="5_x530g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_joe04"]
-size = Vector2(16, 16)
-
-[node name="BaseMap" type="Node2D" unique_id=1011221211]
+[node name="BaseRoom" type="Node2D" unique_id=1011221211 node_paths=PackedStringArray("persistent_id", "passage_left", "passage_right", "passage_top", "passage_bottom", "world_boundries")]
 script = ExtResource("1_aqab4")
+persistent_id = NodePath("PersistentID")
+passage_left = NodePath("Passages/MapPassageLeft")
+passage_right = NodePath("Passages/MapPassageRight")
+passage_top = NodePath("Passages/MapPassageTop")
+passage_bottom = NodePath("Passages/MapPassageBottom")
+world_boundries = NodePath("WorldBoundries")
+
+[node name="PersistentID" type="Node" parent="." unique_id=629581499]
+script = ExtResource("2_kqjpx")
+unique_id = &"ryfo1bztdrm4i1r7"
+metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
 [node name="WorldBoundries" parent="." unique_id=1285668556 instance=ExtResource("2_qhvmp")]
 
@@ -22,20 +30,20 @@ tile_set = ExtResource("3_2s62j")
 
 [node name="Passages" type="Node2D" parent="." unique_id=441991725]
 
-[node name="MapPassageLeft" type="TileMapLayer" parent="Passages" unique_id=447796019 node_paths=PackedStringArray("area", "collision_shape", "steal_tile_map")]
-tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAA=")
-tile_set = ExtResource("4_x530g")
-script = ExtResource("4_a5t3k")
-area = NodePath("DetectionArea")
-collision_shape = NodePath("DetectionArea/CollisionShape2D")
+[node name="MapPassageLeft" parent="Passages" unique_id=1297313090 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
 steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
-metadata/_custom_type_script = "uid://b3d0mif6g34k1"
 
-[node name="TeleportPosition" type="Node2D" parent="Passages/MapPassageLeft" unique_id=1996167849]
-position = Vector2(32, 336)
+[node name="MapPassageRight" parent="Passages" unique_id=1499478751 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
+tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAAnABQAAAAAAAAAAAAnABMAAAAAAAAAAAAnABIAAAAAAAAAAAA=")
+steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
+direction = 1
 
-[node name="DetectionArea" type="Area2D" parent="Passages/MapPassageLeft" unique_id=1209953132]
+[node name="MapPassageTop" parent="Passages" unique_id=636012963 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
+tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAA=")
+steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
+direction = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Passages/MapPassageLeft/DetectionArea" unique_id=1102726716]
-shape = SubResource("RectangleShape2D_joe04")
-debug_color = Color(0.90588236, 0, 0.7411765, 0.69803923)
+[node name="MapPassageBottom" parent="Passages" unique_id=1181599253 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
+tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAANABUAAAAAAAAAAAAOABUAAAAAAAAAAAAPABUAAAAAAAAAAAAQABUAAAAAAAAAAAARABUAAAAAAAAAAAASABUAAAAAAAAAAAATABUAAAAAAAAAAAAUABUAAAAAAAAAAAAVABUAAAAAAAAAAAAWABUAAAAAAAAAAAAXABUAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAXABYAAAAAAAAAAAAWABYAAAAAAAAAAAAVABYAAAAAAAAAAAAUABYAAAAAAAAAAAATABYAAAAAAAAAAAASABYAAAAAAAAAAAARABYAAAAAAAAAAAAQABYAAAAAAAAAAAAPABYAAAAAAAAAAAAOABYAAAAAAAAAAAANABYAAAAAAAAAAAA=")
+steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
+direction = 3

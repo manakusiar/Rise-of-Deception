@@ -22,12 +22,16 @@ func _game_saving(map_id: StringName) -> void:
 	print("FINISHED SAVING DATA")
 
 func _game_loading(map_id) -> void:
-	print("GAME LOADING AS: ", name, " in the ", map_id, " map")
-	var _room_data = DataManager.master_data.room_data[map_id].data
+	
+	print("GAME LOADING AS: ", name)
+	
+	var _player_data = DataManager.master_data.player_data
 	var _id = persistent_id.unique_id
+	
 	print(DataManager.master_data.room_data[map_id].data)
-	if _room_data.has(_id):
-		var _data: EntityData = _room_data[_id]
+	
+	if _player_data.has(_id):
+		var _data: EntityData = _player_data
 		if physics_component:
 			physics_component.Load_Save_Data(_data.physics_data)
 		if inventory_component:

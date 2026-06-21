@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://x7aj76n2xwso"]
 
-[ext_resource type="Script" uid="uid://4demun3gju6f" path="res://components/scenes/maps/base_map/world_boundries/world_boundries.gd" id="1_t6npu"]
+[ext_resource type="Script" uid="uid://4demun3gju6f" path="res://components/scenes/maps/base_room/world_boundries/world_boundries.gd" id="1_t6npu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhvmp"]
 size = Vector2(16, 16)

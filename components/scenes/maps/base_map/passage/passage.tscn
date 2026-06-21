@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://bx5lmrk66xmo3"]
-
-[ext_resource type="TileSet" uid="uid://b3mu7teosgmps" path="res://components/tilesets/base-wall/base_wall_tileset.tres" id="1_sle6x"]
-[ext_resource type="Script" uid="uid://b3d0mif6g34k1" path="res://components/scenes/maps/base_map/passage/passage.gd" id="2_jr1bd"]
-
-[node name="Passage" type="TileMapLayer" unique_id=1110990421]
-tile_set = ExtResource("1_sle6x")
-script = ExtResource("2_jr1bd")

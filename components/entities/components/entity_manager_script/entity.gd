@@ -12,14 +12,13 @@ extends CharacterBody2D
 @export var stats: Stats = preload("uid://bm8ogs5nwbkts")
 
 
-
 func _ready() -> void:
 	if input_component:
 		input_component.Jump.connect(_input_jump)
 		input_component.Attack.connect(_input_attack)
 		input_component.Ability.connect(_input_ability)
 
-func setup_data_manager(map: Map) -> void:
+func setup_data_manager(map: BaseMap) -> void:
 	if persistent_id:
 		map.game_saving.connect(_game_saving)
 		map.game_loading.connect(_game_loading)

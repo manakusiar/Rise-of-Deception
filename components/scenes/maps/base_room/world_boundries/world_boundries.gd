@@ -1,4 +1,5 @@
 @tool
+class_name WorldBoundries
 extends Node
 
 @export_subgroup("Nodes")
