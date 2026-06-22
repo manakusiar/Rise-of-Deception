@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bx5lmrk66xmo3"]
+
+[ext_resource type="TileSet" uid="uid://draedvf7k55w6" path="res://components/tilesets/passage_tileset/passage_tileset.tres" id="1_7bo03"]
+[ext_resource type="Script" uid="uid://b3d0mif6g34k1" path="res://resources/states/levels/rooms/base_room/passage/passage.gd" id="2_6qtof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_joe04"]
+size = Vector2(16, 16)
+
+[node name="MapPassageLeft" type="TileMapLayer" unique_id=1297313090 node_paths=PackedStringArray("area", "collision_shape")]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("1_7bo03")
+script = ExtResource("2_6qtof")
+area = NodePath("DetectionArea")
+collision_shape = NodePath("DetectionArea/CollisionShape2D")
+metadata/_custom_type_script = "uid://b3d0mif6g34k1"
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1339166202]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=28026328]
+shape = SubResource("RectangleShape2D_joe04")
+debug_color = Color(0.90588236, 0, 0.7411765, 0.69803923)

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://x7aj76n2xwso"]
+
+[ext_resource type="Script" uid="uid://4demun3gju6f" path="res://resources/states/levels/rooms/base_room/world_boundries/world_boundries.gd" id="1_0h5fa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhvmp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2s62j"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_geg1v"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aplnc"]
+size = Vector2(16, 16)
+
+[node name="WorldBoundries" type="Node2D" unique_id=1285668556 node_paths=PackedStringArray("left_boundry", "right_boundry", "top_boundry", "bottom_boundry")]
+script = ExtResource("1_0h5fa")
+left_boundry = NodePath("Left/LeftCollisionShape")
+right_boundry = NodePath("Right/RightCollisionShape")
+top_boundry = NodePath("Top/TopCollisionShape")
+bottom_boundry = NodePath("Bottom/BottomCollisionShape")
+size = Vector2(640, 360)
+
+[node name="Left" type="StaticBody2D" parent="." unique_id=1013776129]
+
+[node name="LeftCollisionShape" type="CollisionShape2D" parent="Left" unique_id=1005521037]
+position = Vector2(-8, 180)
+scale = Vector2(1, 24.5)
+shape = SubResource("RectangleShape2D_qhvmp")
+
+[node name="Right" type="StaticBody2D" parent="." unique_id=780792892]
+
+[node name="RightCollisionShape" type="CollisionShape2D" parent="Right" unique_id=1930214533]
+position = Vector2(648, 180)
+scale = Vector2(1, 24.5)
+shape = SubResource("RectangleShape2D_2s62j")
+
+[node name="Top" type="StaticBody2D" parent="." unique_id=1091015665]
+
+[node name="TopCollisionShape" type="CollisionShape2D" parent="Top" unique_id=559471522]
+position = Vector2(320, -8)
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_geg1v")
+
+[node name="Bottom" type="StaticBody2D" parent="." unique_id=1568064031]
+
+[node name="BottomCollisionShape" type="CollisionShape2D" parent="Bottom" unique_id=2075485131]
+position = Vector2(320, 368)
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_aplnc")

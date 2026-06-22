@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Stats" format=3 uid="uid://bm8ogs5nwbkts"]
+
+[ext_resource type="Script" uid="uid://4j5ry46byrwh" path="res://components/entities/stat_component/stat.gd" id="1_4tc8m"]
+[ext_resource type="Curve" uid="uid://brqhenrycwvri" path="res://components/entities/stat_component/stat_curves/max_hp_curve.tres" id="2_26kum"]
+[ext_resource type="Script" uid="uid://cioghh6igp4ds" path="res://components/entities/stat_component/stats.gd" id="3_a3chc"]
+
+[sub_resource type="Resource" id="Resource_b1uqo"]
+script = ExtResource("1_4tc8m")
+base_value = 10.0
+is_buffable = true
+is_scalable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_vkfg8"]
+script = ExtResource("1_4tc8m")
+base_value = 10.0
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_0eorv"]
+script = ExtResource("1_4tc8m")
+base_value = 10.0
+is_buffable = true
+is_scalable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_qd1cg"]
+script = ExtResource("1_4tc8m")
+base_value = 10.0
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_4tc8m"]
+script = ExtResource("1_4tc8m")
+base_value = 32.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_jdqu6"]
+script = ExtResource("1_4tc8m")
+base_value = 64.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_16bl4"]
+script = ExtResource("1_4tc8m")
+base_value = 800.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[sub_resource type="Resource" id="Resource_hce6m"]
+script = ExtResource("1_4tc8m")
+base_value = -400.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
+[resource]
+script = ExtResource("3_a3chc")
+all_stats = Dictionary[int, ExtResource("1_4tc8m")]({
+0: SubResource("Resource_b1uqo"),
+1: SubResource("Resource_vkfg8"),
+2: SubResource("Resource_0eorv"),
+3: SubResource("Resource_qd1cg"),
+4: SubResource("Resource_4tc8m"),
+5: SubResource("Resource_jdqu6"),
+6: SubResource("Resource_16bl4"),
+7: SubResource("Resource_hce6m")
+})
+metadata/_custom_type_script = "uid://cioghh6igp4ds"
