@@ -6,15 +6,24 @@
 [ext_resource type="TileSet" uid="uid://b3mu7teosgmps" path="res://components/tilesets/base_wall/base_wall_tileset.tres" id="3_2s62j"]
 [ext_resource type="PackedScene" uid="uid://bx5lmrk66xmo3" path="res://resources/states/levels/rooms/base_room/passage/passage.tscn" id="5_x530g"]
 [ext_resource type="PackedScene" uid="uid://dgegpg6nxyv0l" path="res://resources/states/entities/enemy/enemy.tscn" id="6_sjps5"]
+[ext_resource type="Script" uid="uid://butfbx4nmf6mv" path="res://components/camera/camera.gd" id="7_kcbmt"]
+[ext_resource type="Script" uid="uid://bloi24plw8qhh" path="res://components/camera/camera_zone.gd" id="8_jakv8"]
 
-[node name="BaseRoom" type="Node2D" unique_id=1011221211 node_paths=PackedStringArray("persistent_id", "passage_left", "passage_right", "passage_top", "passage_bottom", "world_boundries")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_joe04"]
+size = Vector2(656, 368)
+
+[node name="BaseRoom" type="Node2D" unique_id=1011221211 node_paths=PackedStringArray("persistent_id", "passages", "world_boundries", "camera")]
 script = ExtResource("1_aqab4")
 persistent_id = NodePath("PersistentID")
-passage_left = NodePath("Passages/MapPassageLeft")
-passage_right = NodePath("Passages/MapPassageRight")
-passage_top = NodePath("Passages/MapPassageTop")
-passage_bottom = NodePath("Passages/MapPassageBottom")
+passages = {
+0: NodePath("Passages/MapPassageLeft"),
+1: NodePath("Passages/MapPassageRight"),
+2: NodePath("Passages/MapPassageTop"),
+3: NodePath("Passages/MapPassageBottom")
+}
 world_boundries = NodePath("WorldBoundries")
+camera = NodePath("Camera2D")
+player_spawn_location = Vector2(72, 336)
 
 [node name="PersistentID" type="Node" parent="." unique_id=629581499]
 script = ExtResource("2_kqjpx")
@@ -32,31 +41,50 @@ tile_set = ExtResource("3_2s62j")
 [node name="Passages" type="Node2D" parent="." unique_id=441991725]
 
 [node name="MapPassageLeft" parent="Passages" unique_id=1297313090 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
+unique_name_in_owner = true
 steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
+player_tp_position = Vector2(8, 336)
 
 [node name="MapPassageRight" parent="Passages" unique_id=1499478751 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
-tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAAnABQAAAAAAAAAAAAnABMAAAAAAAAAAAAnABIAAAAAAAAAAAA=")
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAnABQAAAAAAAAAAAAnABMAAAAAAAAAAAAnABIAAAAAAAAAAAA=")
 steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
 direction = 1
+player_tp_position = Vector2(632, 336)
 
 [node name="MapPassageTop" parent="Passages" unique_id=636012963 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
-tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAA=")
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAA=")
 steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
 direction = 2
+player_tp_position = Vector2(408, 16)
 
 [node name="MapPassageBottom" parent="Passages" unique_id=1181599253 node_paths=PackedStringArray("steal_tile_map") instance=ExtResource("5_x530g")]
-tile_map_data = PackedByteArray("AAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAANABUAAAAAAAAAAAAOABUAAAAAAAAAAAAPABUAAAAAAAAAAAAQABUAAAAAAAAAAAARABUAAAAAAAAAAAASABUAAAAAAAAAAAATABUAAAAAAAAAAAAUABUAAAAAAAAAAAAVABUAAAAAAAAAAAAWABUAAAAAAAAAAAAXABUAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAXABYAAAAAAAAAAAAWABYAAAAAAAAAAAAVABYAAAAAAAAAAAAUABYAAAAAAAAAAAATABYAAAAAAAAAAAASABYAAAAAAAAAAAARABYAAAAAAAAAAAAQABYAAAAAAAAAAAAPABYAAAAAAAAAAAAOABYAAAAAAAAAAAANABYAAAAAAAAAAAA=")
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAANABUAAAAAAAAAAAAOABUAAAAAAAAAAAAPABUAAAAAAAAAAAAQABUAAAAAAAAAAAARABUAAAAAAAAAAAASABUAAAAAAAAAAAATABUAAAAAAAAAAAAUABUAAAAAAAAAAAAVABUAAAAAAAAAAAAWABUAAAAAAAAAAAAXABUAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAXABYAAAAAAAAAAAAWABYAAAAAAAAAAAAVABYAAAAAAAAAAAAUABYAAAAAAAAAAAATABYAAAAAAAAAAAASABYAAAAAAAAAAAARABYAAAAAAAAAAAAQABYAAAAAAAAAAAAPABYAAAAAAAAAAAAOABYAAAAAAAAAAAANABYAAAAAAAAAAAA=")
 steal_tile_map = NodePath("../../TileMapLayers/TileMapLayer")
 direction = 3
+player_tp_position = Vector2(360, 352)
+player_tp_properties = Dictionary[StringName, Variant]({
+&"velocity": Vector2(20, 20)
+})
 
 [node name="Enemy" parent="." unique_id=1538659535 instance=ExtResource("6_sjps5")]
 position = Vector2(216, 289)
 
-[node name="Label" type="Label" parent="." unique_id=1349035408]
-unique_name_in_owner = true
-offset_left = 139.0
-offset_top = 122.00001
-offset_right = 179.0
-offset_bottom = 145.0
-scale = Vector2(4.3599987, 4.3599987)
-text = "TEST"
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1077165824]
+script = ExtResource("7_kcbmt")
+
+[node name="CameraZones" type="Node2D" parent="." unique_id=776830982]
+
+[node name="CameraZone" type="Area2D" parent="CameraZones" unique_id=485000126]
+script = ExtResource("8_jakv8")
+camera_mode = "locked"
+locked_position = Vector2(320, 180)
+metadata/_custom_type_script = "uid://bloi24plw8qhh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraZones/CameraZone" unique_id=1323645631]
+visible = false
+position = Vector2(320, 184)
+shape = SubResource("RectangleShape2D_joe04")
+debug_color = Color(3.85046e-07, 0.62251395, 0.54814994, 0.41960785)

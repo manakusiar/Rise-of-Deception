@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://components/entities/input_component/player_input_component/player_input_component.gd" id="6_5tat1"]
 [ext_resource type="Script" uid="uid://sdxn04232pti" path="res://components/entities/ability_component/ability_component.gd" id="7_hahem"]
 [ext_resource type="Script" uid="uid://wrf4grbly5lk" path="res://components/entities/inventory_component/inventory_component.gd" id="8_g3b5p"]
+[ext_resource type="Script" uid="uid://cwngghddmtbeb" path="res://components/entities/room_passing_component/room_passing_component.gd" id="9_unk6x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
 size = Vector2(16, 19)
@@ -178,9 +179,10 @@ _data = {
 &"run": SubResource("Animation_k87f5")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "persistent_id") groups=["Player", "Saveable"]]
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("room_passing_component", "physics_component", "input_component", "ability_component", "persistent_id") groups=["Player", "Saveable"]]
 collision_layer = 2
 script = ExtResource("1_yceoy")
+room_passing_component = NodePath("Components/RoomPassingComponent")
 physics_component = NodePath("Components/PhysicsComponent")
 input_component = NodePath("Components/PlayerInputComponent")
 ability_component = NodePath("Components/AbilityComponent")
@@ -228,3 +230,9 @@ unique_name_in_owner = true
 script = ExtResource("8_g3b5p")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://wrf4grbly5lk"
+
+[node name="RoomPassingComponent" type="Node" parent="Components" unique_id=2005252721 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("9_unk6x")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://cwngghddmtbeb"

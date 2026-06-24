@@ -74,19 +74,19 @@ static func Print_Grid(map: MapState) -> void:
 	var _len = ((_size.y * 2 + 2) - _title.length())/ 2
 	
 	print('='.repeat(floori(_len)), _title, '='.repeat(ceili(_len)))
-	for _x in range(_size.x):
+	for _y in range(_size.y):
 		var _text = "|"
-		for _y in range(_size.y):
-			var _cell = _grid[_x][_y]
+		for _x in range(_size.x):
+			var _cell = _grid[_x][_size.y - _y - 1]
 			if _cell != null and _cell is RoomState:
 				if _cell.cell_pos == Vector2i(0, 0):
-					_text += "o"
+					_text += str(_cell.cell_pos)
 				else:
 					if _cell.is_special:
-						_text += "s"
+						_text += str(_cell.cell_pos)
 					else:
-						_text += "x"
+						_text += str(_cell.cell_pos)
 			else:
-				_text += "-"
+				_text += "(-, -)"
 			_text += " "
 		print(_text, "|")

@@ -23,6 +23,7 @@ func setup_data_manager(map: RoomScene) -> void:
 		map.game_saving.connect(_game_saving)
 		map.game_loading.connect(_game_loading)
 
+#region Saving / Loading
 func _game_saving(room_data: RoomState) -> void:
 	print("GAME SAVING AS: ", name, " in the ", room_data.type, " map")
 	var _room_data = room_data.data
@@ -58,6 +59,7 @@ func _game_loading(room_data: RoomState) -> void:
 			ability_component.Load_Save_Data(_data.abilities)
 		if stats:
 			stats.Load_Save_Data(_data.stats)
+#endregion
 
 func _physics_process(delta: float) -> void:
 	if physics_component and input_component:

@@ -4,25 +4,24 @@ extends Node2D
 @export_subgroup("Nodes")
 @export var persistent_id: PersistentID
 
-@export var passage_left: RoomPassage
-@export var passage_right: RoomPassage
-@export var passage_top: RoomPassage
-@export var passage_bottom: RoomPassage
+@export var passages: Dictionary[RoomPassage.path_direction, RoomPassage]
 
 @export var world_boundries: WorldBoundries
 
+@export var camera: Camera2D
+
 @export_subgroup("Settings")
 @export var room_type: Global.Room_Types
+@export var player_spawn_location: Vector2 
 
 var room_data: RoomState
 
+signal passage_player_entered
+
+var map_location: Vector2
+
 signal game_saving(map_id: StringName)
 signal game_loading(map_id: StringName)
-
-var map_location: Vector2:
-	set(value):
-		map_location = value
-		%Label.text = str(value)
 
 func _ready() -> void:
 	DataManager.game_saving.connect(_save_game)
@@ -32,25 +31,21 @@ func _ready() -> void:
 		if _child.has_method("setup_data_manager"):
 			_child.setup_data_manager(self)
 	
-	# Various checks
-	if passage_left and passage_right and passage_top and passage_bottom:
-		var _left_test := (passage_left.direction == RoomPassage.path_direction.LEFT)
-		var _right_test := (passage_right.direction == RoomPassage.path_direction.RIGHT)
-		var _top_test := (passage_top.direction == RoomPassage.path_direction.TOP)
-		var _bottom_test := (passage_bottom.direction == RoomPassage.path_direction.BOTTOM)
-		if _left_test and _right_test and _top_test and _bottom_test:
-			#print("ROOM \"", str(name).to_upper(), "\" LOADED!")
-			pass
+	for _passage_dir in passages.keys():
+		var _passage = passages[_passage_dir]
+		if _passage:
+			if _passage.direction == _passage_dir:
+				pass
+			else:
+				push_error("Incorrect passage direction: ",_passage_dir)
 		else:
-			push_error("Error: Either correct incorrectly setup map passage or map passage reference not set.")
-	else:
-		push_error("Error: Map passage reference not set.")
+			push_error("No passage set: ",_passage_dir)
 
 func setup_passages(left_open: bool, right_open: bool, top_open: bool, bottom_open: bool) -> void:
-	passage_left.open = left_open
-	passage_right.open = right_open
-	passage_top.open = top_open
-	passage_bottom.open = bottom_open
+	passages[RoomPassage.path_direction.LEFT].open = left_open
+	passages[RoomPassage.path_direction.RIGHT].open = right_open
+	passages[RoomPassage.path_direction.TOP].open = top_open
+	passages[RoomPassage.path_direction.BOTTOM].open = bottom_open
 
 # ==================
 # SAVING AND LOADING

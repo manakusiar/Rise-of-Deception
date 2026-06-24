@@ -22,12 +22,12 @@ var max_vertical_velocity:
 
 func Get_Save_Data() -> Dictionary:
 	return {
-		&"position": entity.position
+		&"velocity": entity.velocity
 	}
 
 func Load_Save_Data(data: Dictionary) -> void:
 	print("PHYSICS LOADING: ", data)
-	entity.position = data[&"position"]
+	entity.velocity = data[&"velocity"]
 
 func Handle_Physics(delta: float, movement_direction: Vector2) -> void:
 	var direction := movement_direction

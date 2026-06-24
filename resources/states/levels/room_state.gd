@@ -6,9 +6,10 @@ extends Resource
 @export var empty_neighbours: Array[Vector2i]
 
 @export var cell_pos: Vector2i
-@export var room_unique_id: StringName
 
+@export var room_unique_id: StringName
 @export var type: Global.Room_Types
+var room_reference: RoomScene
 
 # Dynamic variables 
 var value: int = 0

@@ -5,3 +5,4 @@ extends DataTemplate
 @export var stats: Dictionary
 @export var abilities: Dictionary[StringName, AbilityData]
 @export var physics_data: Dictionary
+@export var room_passage: Dictionary

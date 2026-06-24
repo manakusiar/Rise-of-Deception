@@ -21,6 +21,7 @@ SignalBus="*uid://d0aw5pg2lgidf"
 AllItems="*uid://f7sdsw2m65lb"
 DataManager="*uid://stb8ql0aji14"
 Global="*uid://gv6u6pry8pvd"
+CameraManager="*uid://bifkpwps2at1k"
 
 [debug]
 

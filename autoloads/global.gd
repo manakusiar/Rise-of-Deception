@@ -1,9 +1,16 @@
 extends Node
 
-enum Worlds {
-	WORLD1, 
-	WORLD2
-}
+#region Map
+var current_map: MapState
+
+func get_room(_room: Vector2i) -> RoomScene:
+	if current_map and current_map.rooms.has(_room):
+		return Global.current_map.rooms[_room].room_reference
+	else:
+		return null
+#endregion
+
+#region Rooms
 
 enum Room_Types {
 	BASE_ROOM
@@ -11,6 +18,15 @@ enum Room_Types {
 
 const room_paths: Dictionary[Room_Types, PackedScene] = {
 	Room_Types.BASE_ROOM: preload("uid://csy1pyeuajw0y")
+}
+
+#endregion
+
+#region Worlds
+
+enum Worlds {
+	WORLD1, 
+	WORLD2
 }
 
 const world_maps: Dictionary[Worlds, Dictionary] = {
@@ -45,4 +61,5 @@ func get_world_map(_world: Worlds) -> Dictionary[String, Dictionary]:
 			_dict[_key][_room] = _path
 	
 	return _dict
-		
+
+#endregion

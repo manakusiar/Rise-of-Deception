@@ -1,6 +1,8 @@
 extends Entity
 class_name Player
 
+@export var room_passing_component: RoomPassingComponent
+
 func _game_saving(room_data: RoomState) -> void:
 	var _player_data = DataManager.master_data.player_data
 	var _id = persistent_id.unique_id
@@ -17,6 +19,8 @@ func _game_saving(room_data: RoomState) -> void:
 		_data.abilities = ability_component.Get_Save_Data()
 	if stats:
 		_data.stats = stats.Get_Save_Data()
+	if room_passing_component:
+		_data.room_passage = room_passing_component.Get_Save_Data()
 	
 	print("FINISHED SAVING DATA")
 
@@ -36,3 +40,5 @@ func _game_loading(room_data: RoomState) -> void:
 			ability_component.Load_Save_Data(_data.abilities)
 		if stats:
 			stats.Load_Save_Data(_data.stats)
+		if room_passing_component:
+			room_passing_component.Load_Save_Data(_data.room_passage)
