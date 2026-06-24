@@ -25,6 +25,7 @@ func generate_map(_world: Global.Worlds) -> void:
 	
 	Load_Map()
 
+#region Save / Load
 func _save_game() -> void:
 	DataManager.master_data.map_data = current_map
 
@@ -32,6 +33,7 @@ func _load_game() -> void:
 	Load_Map(DataManager.master_data.map_data)
 
 func Load_Map(_map: MapState = current_map) -> void:
+#endregion
 	current_map = _map
 	
 	var _x := 0.0
@@ -42,7 +44,6 @@ func Load_Map(_map: MapState = current_map) -> void:
 	for _room_pos in _map_dict:
 		var _room: RoomState = _map_dict[_room_pos]
 		
-		print("LOADED ROOM")
 		# Create room
 		var _room_state = instantiate_room_state(_room, _map_dict, _room_pos)
 		_room_state.position.x += _x
@@ -68,7 +69,7 @@ func instantiate_room_state(_room: RoomState, _map_dict, _room_pos: Vector2i) ->
 		_room_state.map_location = _room_pos
 		_room_state.room_data = _room
 		
-		_room_state.process_mode = Node.PROCESS_MODE_DISABLED
+		#_room_state.process_mode = Node.PROCESS_MODE_DISABLED
 		
 		# Room to map
 		_room.room_unique_id = _room_state.persistent_id.unique_id

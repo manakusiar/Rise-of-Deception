@@ -1,5 +1,8 @@
 extends Node
 
+var current_multiplayer_status: Utils.multiplayer_status = Utils.multiplayer_status.SINGLEPLAYER
+var single_player_player: Player
+
 #region Map
 var current_map: MapState
 

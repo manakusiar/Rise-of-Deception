@@ -2,7 +2,7 @@ class_name Entity
 extends CharacterBody2D
 
 @export_subgroup("Nodes/Components")
-@export var physics_component: PhysicsComponent 
+@export var physics_component: PhysicsComponent
 @export var input_component: InputComponent
 @export var ability_component: AbilityComponent
 @export var inventory_component: InventoryComponent
@@ -18,12 +18,12 @@ func _ready() -> void:
 		input_component.Attack.connect(_input_attack)
 		input_component.Ability.connect(_input_ability)
 
+#region Saving / Loading
 func setup_data_manager(map: RoomScene) -> void:
 	if persistent_id:
 		map.game_saving.connect(_game_saving)
 		map.game_loading.connect(_game_loading)
 
-#region Saving / Loading
 func _game_saving(room_data: RoomState) -> void:
 	print("GAME SAVING AS: ", name, " in the ", room_data.type, " map")
 	var _room_data = room_data.data

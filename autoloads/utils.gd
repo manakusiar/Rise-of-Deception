@@ -1,5 +1,11 @@
 extends Node
 
+enum multiplayer_status {
+	SINGLEPLAYER,
+	LOCAL_MULTIPLAYER,
+	ONLINE_MULTIPLAYER
+}
+
 enum ability_slots {
 	PRIMARY,
 	SECONDARY,

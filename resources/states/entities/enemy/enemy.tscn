@@ -269,7 +269,7 @@ autoplay = &"idle"
 
 [node name="PersistentID" type="Node" parent="." unique_id=543793119]
 script = ExtResource("10_oyrrt")
-reset_id = null
+unique_id = &"xjc6ye3zzewka20q"
 metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
 [node name="Components" type="Node" parent="." unique_id=917482435]

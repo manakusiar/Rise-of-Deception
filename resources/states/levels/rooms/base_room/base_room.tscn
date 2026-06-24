@@ -73,6 +73,7 @@ player_tp_properties = Dictionary[StringName, Variant]({
 position = Vector2(216, 289)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1077165824]
+position = Vector2(197, 164)
 script = ExtResource("7_kcbmt")
 
 [node name="CameraZones" type="Node2D" parent="." unique_id=776830982]

@@ -179,6 +179,9 @@ _data = {
 &"run": SubResource("Animation_k87f5")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1kv5"]
+size = Vector2(10, 8)
+
 [node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("room_passing_component", "physics_component", "input_component", "ability_component", "persistent_id") groups=["Player", "Saveable"]]
 collision_layer = 2
 script = ExtResource("1_yceoy")
@@ -231,8 +234,18 @@ script = ExtResource("8_g3b5p")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://wrf4grbly5lk"
 
-[node name="RoomPassingComponent" type="Node" parent="Components" unique_id=2005252721 node_paths=PackedStringArray("player")]
+[node name="RoomPassingComponent" type="Node" parent="Components" unique_id=2005252721 node_paths=PackedStringArray("player", "area")]
 unique_name_in_owner = true
 script = ExtResource("9_unk6x")
 player = NodePath("../..")
+area = NodePath("../../Areas/PassageArea")
 metadata/_custom_type_script = "uid://cwngghddmtbeb"
+
+[node name="Areas" type="Node2D" parent="." unique_id=813453677]
+
+[node name="PassageArea" type="Area2D" parent="Areas" unique_id=611895552]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/PassageArea" unique_id=1737104426]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_f1kv5")
+debug_color = Color(5.390644e-06, 0.6347754, 0.428789, 0.41960785)

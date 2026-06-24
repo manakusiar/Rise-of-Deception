@@ -1,7 +1,7 @@
 extends Node
 
-signal passage_player_entered
-signal player_passed_to_room(_old_map_position: Vector2i, _new_map_position: Vector2i, _player: Player)
+signal player_entered_passage(_player: Player, _passage: RoomPassage)
+signal player_travel_to_room(_new_position: Vector2, _room_cell_pos: Vector2i)
 
 signal disable_room(_room: RoomScene)
 signal enable_room(_room: RoomScene)

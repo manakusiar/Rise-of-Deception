@@ -13,6 +13,7 @@ player_manager = NodePath("PlayerManager")
 unique_name_in_owner = true
 script = ExtResource("2_3nb04")
 
-[node name="PlayerManager" type="Node2D" parent="." unique_id=453896731]
+[node name="PlayerManager" type="Node2D" parent="." unique_id=453896731 node_paths=PackedStringArray("map_manager")]
 unique_name_in_owner = true
 script = ExtResource("3_lp74r")
+map_manager = NodePath("..")

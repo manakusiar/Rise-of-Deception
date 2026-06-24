@@ -5,8 +5,24 @@ extends Camera2D
 @export var camera_zoom_proc: float = 0.5
 
 var current_zone: CameraZone
+var follow_player: Player
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	match Global.current_multiplayer_status:
+		Utils.multiplayer_status.SINGLEPLAYER:
+			_process_singleplayer(delta)
+		Utils.multiplayer_status.LOCAL_MULTIPLAYER:
+			_process_local_multiplayer(delta)
+		Utils.multiplayer_status.ONLINE_MULTIPLAYER:
+			pass # need to create
+
+func _process_singleplayer(delta: float) -> void:
+	var _player = Global.single_player_player
+	if _player:
+		print("SINGLEPLAYER")
+		position = _player.global_position
+
+func _process_local_multiplayer(delta: float) -> void:
 	var _players = get_tree().get_nodes_in_group("Player")
 	var _position := Vector2.ZERO
 	var _i: int = 0

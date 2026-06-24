@@ -41,8 +41,6 @@ const path_direction_opposites: Dictionary[RoomPassage.path_direction, RoomPassa
 }
 
 func _ready() -> void:
-	area.body_entered.connect(_area_body_entered)
-	
 	Steal()
 
 func Steal() -> void:
@@ -74,9 +72,3 @@ func Steal() -> void:
 
 func Setup(_open: bool) -> void:
 	open = _open
-
-func _area_body_entered(body) -> void:
-	#print("BODY ", body.name, " entered door ", direction)
-	if body is Player:
-		print("Player ", body.name, " entered door ", path_direction.keys()[direction])
-		SignalBus.passage_player_entered.emit(self, body)
