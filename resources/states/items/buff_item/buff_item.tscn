@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://blvs5l6a4tptg"]
-
-[ext_resource type="Script" uid="uid://yojtkbtvn8e" path="res://resources/states/items/buff_item/buff_item.gd" id="1_afw0q"]
-
-[node name="BuffItem" type="Node2D" unique_id=12332679]
-script = ExtResource("1_afw0q")

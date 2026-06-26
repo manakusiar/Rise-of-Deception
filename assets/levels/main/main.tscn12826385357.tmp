@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bekk1rqcd3nk7"]
+
+[ext_resource type="PackedScene" uid="uid://dg6e3q7n2f4ei" path="res://assets/levels/map_manager/map_manager.tscn" id="1_d3npn"]
+[ext_resource type="Script" uid="uid://dp1n3nlv0mwc" path="res://assets/ui/component_ui_pixel_transition.gd" id="2_5kii4"]
+[ext_resource type="Script" uid="uid://dvjx64da67ruw" path="res://assets/levels/main/external_camera.gd" id="2_vc640"]
+[ext_resource type="Shader" uid="uid://iw2bqordygtk" path="res://assets/ui/shaders/directional_pixels.gdshader" id="3_fqjgv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icghc"]
+shader = ExtResource("3_fqjgv")
+shader_parameter/progress = 0.0570000027075
+shader_parameter/square_ratio = Vector2(640, 360)
+shader_parameter/square_size = 8.0
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/fade_in = true
+shader_parameter/edge_softness = 0.0
+shader_parameter/v_strength = 0.5000000712500001
+
+[node name="Main" type="Node" unique_id=630365655]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1879420564]
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1856833384]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="MapManager" parent="SubViewportContainer/SubViewport" unique_id=450504580 instance=ExtResource("1_d3npn")]
+
+[node name="ComponentUIPixelTransition" type="Control" parent="SubViewportContainer/SubViewport" unique_id=789445583 node_paths=PackedStringArray("pixel_arrow_transition")]
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_5kii4")
+pixel_arrow_transition = NodePath("PixelArrowTransition")
+metadata/_custom_type_script = "uid://dp1n3nlv0mwc"
+
+[node name="PixelArrowTransition" type="ColorRect" parent="SubViewportContainer/SubViewport/ComponentUIPixelTransition" unique_id=1443923020]
+material = SubResource("ShaderMaterial_icghc")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(1, 0, 1, 1)
+
+[node name="ExternalCamera" type="Camera2D" parent="SubViewportContainer" unique_id=543919973]
+unique_name_in_owner = true
+position = Vector2(320, 180)
+zoom = Vector2(3, 3)
+script = ExtResource("2_vc640")
+
+[node name="UI" type="Control" parent="." unique_id=1570142072]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

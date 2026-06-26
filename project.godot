@@ -46,11 +46,8 @@ version_control/autoload_on_startup=true
 folder_colors={
 "res://addons/": "gray",
 "res://assets/": "gray",
-"res://autoloads/": "purple",
 "res://components/": "green",
-"res://resources/": "red",
-"res://resources/states/": "orange",
-"res://resources/templates/": "yellow"
+"res://src/autoloads/": "purple"
 }
 
 [global_group]

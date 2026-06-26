@@ -1,0 +1,35 @@
+extends Node
+
+enum pixel_transition_types {
+	NONE,
+	ARROW
+}
+
+enum multiplayer_status {
+	SINGLEPLAYER,
+	LOCAL_MULTIPLAYER,
+	ONLINE_MULTIPLAYER
+}
+
+enum ability_slots {
+	PRIMARY,
+	SECONDARY,
+	UTILITY
+}
+
+enum stat_names {
+	MAX_HEALTH,
+	HEALTH,
+	MAX_MANA,
+	MANA,
+	MAX_HORIZONTAL_VELOCITY,
+	MAX_VERTICAL_VELOCITY,
+	WALK_ACCELERATION,
+	JUMP_VELOCITY
+}
+
+enum ItemID {
+	TEST_ITEM,
+	MAGIC_ITEM,
+	BUFF_ITEM
+}
