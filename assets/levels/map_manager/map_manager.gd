@@ -3,6 +3,7 @@ extends Node2D
 
 @export var room_manager: RoomManager
 @export var player_manager: PlayerManager
+@export var local_camera: ComponentRoomCamera
 
 var current_map: MapState:
 	get():
@@ -14,6 +15,7 @@ func _ready() -> void:
 	DataManager.game_saving.connect(_save_game)
 	DataManager.game_loading.connect(_load_game)
 	SignalBus.player_created.connect(_player_created)
+	SignalBus.transition_ended.connect(_transition_ended)
 	
 	generate_map(Global.Worlds.WORLD1)
 	player_manager.add_player.call_deferred()
@@ -88,3 +90,7 @@ func _player_created(_player: Player, _room_pos: Vector2i) -> void:
 		SignalBus.enable_room.emit(_room_pos)
 	else:
 		push_error("Error: Player room position unset, cannot find what room to enable!")
+
+func _transition_ended() -> void:
+	print("test")
+	

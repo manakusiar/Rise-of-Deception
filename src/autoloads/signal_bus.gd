@@ -12,5 +12,6 @@ signal player_created(_player: Player, _room_pos: Vector2i)
 signal external_camera_property_change(properties: Dictionary[StringName, Variant])
 
 signal transition_mid_way
+signal transition_ended
 
 signal start_transition(_transition: Utils.pixel_transition_types, direction: Vector2)

@@ -47,6 +47,8 @@ func setup_camera() -> void:
 		var _pos = world_boundries.global_position
 		var _size = world_boundries.size
 		
+		_camera.movement_is_enabled = false
+		
 		_camera.Set_Limits(
 			_pos.x,
 			_pos.x + _size.x,

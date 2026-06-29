@@ -21,6 +21,13 @@ var external_zoom: float:
 
 var goal_position: Vector2 = Vector2.ZERO
 
+signal movement_enabled
+var movement_is_enabled: bool = true:
+	set(value): 
+		if value != movement_is_enabled and value == true:
+			movement_enabled.emit()
+		movement_is_enabled = value
+
 func _physics_process(delta: float) -> void:
 	match Global.current_multiplayer_status:
 		Utils.multiplayer_status.SINGLEPLAYER:
@@ -48,6 +55,9 @@ func Set_Limits(_left: float, _right: float, _top: float, _bottom: float) -> voi
 	real_limit_right = _right
 	real_limit_top = _top
 	real_limit_bottom = _bottom
+	
+	if !movement_is_enabled:
+		await movement_enabled
 	
 	var _camera_size = Vector2(get_viewport().size)
 	var _extra_size: Vector2 = _camera_size / 2 - _camera_size / external_zoom
@@ -96,8 +106,9 @@ func _process_local_multiplayer(delta: float) -> void:
 
 func move_to_goal() -> void:
 	position = goal_position
-	external_camera.reset_position()
 
 func _move(delta: float) -> void:
+	if !movement_is_enabled:
+		await movement_enabled
 	position = lerp(position, goal_position, delta * camera_speed)
 	

@@ -7,11 +7,10 @@ var first_phase: bool = true
 @export var pixel_arrow_transition: ColorRect
 
 var progress_tween: Tween
-var external_camera_tween: Tween
 
 var all_transitions: Dictionary[Utils.pixel_transition_types, TransitionData]
 
-var time := 1
+var time := 0.25
 
 func _ready() -> void:
 	SignalBus.start_transition.connect(start_transition)
@@ -35,35 +34,23 @@ func start_transition(transition_type: Utils.pixel_transition_types, direction: 
 	progress_tween = create_tween()
 	progress_tween.set_trans(Tween.TRANS_CUBIC)
 	
-	if external_camera_tween and external_camera_tween.is_valid():
-		external_camera_tween.kill()
-	external_camera_tween = create_tween()
-	
-	# Phase 1: tween from reset value to target_in
 	progress_tween.tween_method(
 		_set_progress,
 		current_transition.reset,
 		current_transition.target_in,
 		time
 	)
-	external_camera_tween.tween_property(
-		Global.external_camera,
-		"global_position",
-		Global.external_camera.global_position + direction * 64,
-		time
-	)
 	
-	# Between phases
 	progress_tween.tween_callback(_phase_two_setup)
-	external_camera_tween.tween_callback(Global.external_camera.reset_position)
 	
-	# Phase 2: tween from reset value to target_out
 	progress_tween.tween_method(
 		_set_progress,
 		current_transition.reset,
 		current_transition.target_out,
 		time
 	)
+	
+	progress_tween.tween_callback(_phase_two_end)
 
 func _set_progress(value: float) -> void:
 	current_transition.object.material.set_shader_parameter(
@@ -75,6 +62,10 @@ func _phase_two_setup() -> void:
 	SignalBus.transition_mid_way.emit()
 	_reset_current_transition()
 	_set_fade_in(false)
+
+func _phase_two_end() -> void:
+	SignalBus.transition_ended.emit()
+	#_reset_current_transition()
 
 func _reset_current_transition() -> void:
 	current_transition.object.material.set_shader_parameter(

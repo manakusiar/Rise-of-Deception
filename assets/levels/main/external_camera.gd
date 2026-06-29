@@ -12,6 +12,3 @@ func _external_camera_property_change(properties: Dictionary[StringName, Variant
 	for _property_name in properties:
 		if _property_name in self:
 			set(_property_name, properties[_property_name])
-
-func reset_position() -> void:
-	global_position = base_position

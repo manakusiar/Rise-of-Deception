@@ -1,0 +1,66 @@
+{
+	"categories": [
+		{
+			"uuid": "d27ef05b-aa87-460b-8806-7a0c773ccd28",
+			"title": "Task",
+			"color": "569eff"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "0a018616-38d6-4a5c-8df9-c41568021386",
+			"title": "Todo",
+			"tasks": [
+				"f87fbdb4-f120-4017-b1a7-ee740c5a3697",
+				"9605b138-d251-49b2-a9f2-e0563b43c256",
+				"fa9819c4-e79a-44ce-8733-3b09740bce59"
+			]
+		},
+		{
+			"uuid": "0500082e-3392-46ef-ab62-9adfcaf6a022",
+			"title": "Doing",
+			"tasks": []
+		},
+		{
+			"uuid": "001bf852-bd65-43aa-a7e9-630c85d6eaa0",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "f87fbdb4-f120-4017-b1a7-ee740c5a3697",
+			"title": "Modify transitions to have native integration for composition based cameras",
+			"description": "",
+			"category": "d27ef05b-aa87-460b-8806-7a0c773ccd28",
+			"steps": []
+		},
+		{
+			"uuid": "fa9819c4-e79a-44ce-8733-3b09740bce59",
+			"title": "Make the Debug Console work with the game",
+			"description": "",
+			"category": "d27ef05b-aa87-460b-8806-7a0c773ccd28",
+			"steps": []
+		},
+		{
+			"uuid": "9605b138-d251-49b2-a9f2-e0563b43c256",
+			"title": "Make the camera component an actual individual component",
+			"description": "",
+			"category": "d27ef05b-aa87-460b-8806-7a0c773ccd28",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"0a018616-38d6-4a5c-8df9-c41568021386"
+			],
+			[
+				"0500082e-3392-46ef-ab62-9adfcaf6a022"
+			],
+			[
+				"001bf852-bd65-43aa-a7e9-630c85d6eaa0"
+			]
+		]
+	}
+}

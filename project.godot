@@ -23,11 +23,24 @@ AllItems="*uid://f7sdsw2m65lb"
 DataManager="*uid://stb8ql0aji14"
 Global="*uid://gv6u6pry8pvd"
 CameraManager="*uid://bifkpwps2at1k"
+DevConsole="*uid://ccoijpiv8l45j"
 
 [debug]
 
 gdscript/warnings/unused_parameter=0
 gdscript/warnings/unused_signal=0
+
+[dev_console]
+
+configuration/title_label="CONSOLE"
+configuration/use_default_commands=true
+configuration/view_default_commands=true
+configuration/use_command_history=true
+configuration/background_transparency=0.9
+configuration/keep_size_after_closing=false
+configuration/keep_position_after_closing=false
+configuration/keep_topmost=true
+configuration/debug_only=true
 
 [display]
 
@@ -40,6 +53,10 @@ window/size/window_height_override=720
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dev-console/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg")
 
 [file_customization]
 

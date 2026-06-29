@@ -26,7 +26,6 @@ func enable_room(_room_pos: Vector2i, transition: Utils.pixel_transition_types =
 
 func setup_room_camera(_room_pos: Vector2i) -> void:
 	var _room_scene = Global.get_room(_room_pos)
-	print("HOW THE FUCK")
 	_room_scene.setup_camera()
 
 func _transition_mid_way() -> void:
