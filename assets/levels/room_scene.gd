@@ -25,7 +25,7 @@ func _ready() -> void:
 	DataManager.game_saving.connect(_save_game)
 	DataManager.game_loading.connect(_load_game)
 	
-	setup_camera.call_deferred()
+	setup_camera.call_deferred(Utils.pixel_transition_types.NONE)
 	
 	for _child in get_tree().get_nodes_in_group("Saveable"):
 		if _child.has_method("setup_data_manager"):

@@ -36,7 +36,8 @@ func _update_external_camera(_camera: ExternalCamera) -> void:
 #endregion
 
 func room_setup(_left: float, _right: float, _top: float, _bottom: float, transition: Utils.pixel_transition_types) -> void:
-	movement_component.room_setup(_left, _right, _top, _bottom)
 	if transition != Utils.pixel_transition_types.NONE:
 		movement_component.movement_is_enabled = false
 		movement_component.connect_enable_movement(SignalBus.transition_mid_way)
+	movement_component.room_setup(_left, _right, _top, _bottom)
+	print("CAMERA SET UP ", transition)

@@ -52,7 +52,6 @@ layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 pivot_offset = Vector2(320, 180)
-color = Color(0.8267815, 0.0015247822, 0.94948345, 1)
 
 [node name="UI" type="Control" parent="." unique_id=1570142072]
 layout_mode = 3

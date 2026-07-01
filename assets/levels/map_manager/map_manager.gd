@@ -91,6 +91,6 @@ func _player_created(_player: Player, _room_pos: Vector2i) -> void:
 	else:
 		push_error("Error: Player room position unset, cannot find what room to enable!")
 
-func _transition_ended() -> void:
-	print("test")
+func _transition_ended(transition: Utils.pixel_transition_types) -> void:
+	print("TRANSITION ENDED")
 	

@@ -4,7 +4,7 @@ extends Control
 var current_transition: TransitionData
 var first_phase: bool = true
 
-@export var pixel_arrow_transition: ColorRect
+@export var pixel_arrow_transition: Control
 
 var progress_tween: Tween
 

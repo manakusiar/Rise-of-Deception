@@ -18,18 +18,18 @@ func enable_room(_room_pos: Vector2i, transition: Utils.pixel_transition_types =
 	_room_scene.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	if Global.current_multiplayer_status == Utils.multiplayer_status.SINGLEPLAYER:
-		if transition == Utils.pixel_transition_types.NONE:
-			setup_room_camera(_room_pos)
-		else:
+		setup_room_camera(_room_pos, transition)
+		if transition != Utils.pixel_transition_types.NONE:
 			_cam_last_room = _room_pos
 			SignalBus.start_transition.emit(Utils.pixel_transition_types.ARROW, transition_dir)
 
-func setup_room_camera(_room_pos: Vector2i, transition: Utils.pixel_transition_types = Utils.pixel_transition_types.NONE) -> void:
+func setup_room_camera(_room_pos: Vector2i, transition: Utils.pixel_transition_types) -> void:
 	var _room_scene = Global.get_room(_room_pos)
 	_room_scene.setup_camera(transition)
 
 func _transition_mid_way(transition: Utils.pixel_transition_types) -> void:
-	setup_room_camera(_cam_last_room, transition)
+	#setup_room_camera(_cam_last_room, transition)
+	pass
 
 func free_rooms() -> void:
 	for _child in get_children():
@@ -40,4 +40,4 @@ func _player_travel_to_room(_pos: Vector2, _room_pos: Vector2i, _old_room_cell_p
 	disable_room(_old_room_cell_pos)
 	var _dir = Vector2(RoomPassage.path_direction_vector2i[_passage.direction])
 	_dir.x *= -1
-	enable_room(_room_pos, Utils.pixel_transition_types.ARROW, _dir)
+	enable_room(_room_pos, Utils.pixel_transition_types.NONE, _dir)

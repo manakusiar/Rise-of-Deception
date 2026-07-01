@@ -13,7 +13,7 @@ var real_limit_bottom: float
 
 var goal_position: Vector2 = Vector2.ZERO # Position the camera is lerping towards
 
-var movement_enabled_signals: Array[StringName] = []
+var movement_enabled_signals: Array[Signal] = []
 var movement_is_enabled: bool = true:
 	set(value): 
 		if value != movement_is_enabled and value == true:
@@ -84,9 +84,6 @@ func set_limits(_left: float, _right: float, _top: float, _bottom: float) -> voi
 	real_limit_top = _top
 	real_limit_bottom = _bottom
 	
-	if !movement_is_enabled:
-		await movement_enabled
-	
 	var _camera_size = Vector2(get_viewport().size)
 	var _extra_size: Vector2 = _camera_size / 2 - _camera_size / local_camera.external_zoom
 	
@@ -96,9 +93,13 @@ func set_limits(_left: float, _right: float, _top: float, _bottom: float) -> voi
 	local_camera.limit_bottom = _bottom + _extra_size.y
 
 func move_to_goal() -> void:
+	print("CAMERA MOVED")
 	local_camera.position = goal_position
 
 func room_setup(_left: float, _right: float, _top: float, _bottom: float) -> void:
+	if !movement_is_enabled:
+		await movement_enabled
+	
 	set_limits(
 		_left,
 		_right,
@@ -108,16 +109,18 @@ func room_setup(_left: float, _right: float, _top: float, _bottom: float) -> voi
 	
 	move_to_goal.call_deferred()
 
-func enable_movement() -> void:
-	for _signal in movement_enabled_signals:
-		if is_connected(_signal, enable_movement):
-			disconnect(_signal, enable_movement)
-	movement_enabled_signals.clear()
-	
+func enable_movement(transition: Utils.pixel_transition_types) -> void:
 	movement_is_enabled = true
+	print("CAMERA ENABLED")
+	
+	for _signal in movement_enabled_signals:
+		if _signal.is_connected(enable_movement):
+			_signal.disconnect(enable_movement)
+	movement_enabled_signals.clear()
 
 func connect_enable_movement(_signal: Signal) -> void:
-	var _signal_name = _signal.get_name()
-	movement_enabled_signals.append(_signal_name)
-	connect(_signal_name, enable_movement)
+	print("Enable connected!")
+	if not _signal in movement_enabled_signals:
+		movement_enabled_signals.append(_signal)
+		_signal.connect(enable_movement)
 	
