@@ -16,9 +16,100 @@
 [ext_resource type="Script" uid="uid://c6qgtscdb2xtt" path="res://assets/entities/states/state_entity_idle.gd" id="14_nj2os"]
 [ext_resource type="Script" uid="uid://c1glvyhh7s2gd" path="res://assets/entities/states/state_entity_jump.gd" id="15_i06yf"]
 [ext_resource type="Script" uid="uid://bkopjsa4luktr" path="res://assets/entities/states/state_entity_run.gd" id="16_a65yn"]
+[ext_resource type="Script" uid="uid://hbt7ld1oeu22" path="res://assets/entities/components/component_entity_effect.gd" id="17_nj2os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
-size = Vector2(16, 19)
+size = Vector2(10, 19)
+
+[sub_resource type="Animation" id="Animation_i06yf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ljdlp"]
+resource_name = "jump"
+length = 0.20000334376432
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.75, 1.25), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.20943951023931956, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3sqvs"]
+resource_name = "land"
+length = 0.20000334376432
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.16666332, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 0.75), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.20943951023931956, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljdlp"]
+_data = {
+&"RESET": SubResource("Animation_i06yf"),
+&"jump": SubResource("Animation_ljdlp"),
+&"land": SubResource("Animation_3sqvs")
+}
 
 [sub_resource type="Animation" id="Animation_omgnn"]
 length = 0.001
@@ -69,6 +160,60 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nj2os"]
+resource_name = "fall"
+length = 0.08334166915044189
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_b4gis")]
 }
 
 [sub_resource type="Animation" id="Animation_4w2h4"]
@@ -123,6 +268,60 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_a65yn"]
+resource_name = "rise"
+length = 0.08334166915044189
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_b4gis")]
 }
 
 [sub_resource type="Animation" id="Animation_k87f5"]
@@ -182,14 +381,16 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yrs2i"]
 _data = {
 &"RESET": SubResource("Animation_omgnn"),
+&"fall": SubResource("Animation_nj2os"),
 &"idle": SubResource("Animation_4w2h4"),
+&"rise": SubResource("Animation_a65yn"),
 &"run": SubResource("Animation_k87f5")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1kv5"]
 size = Vector2(10, 8)
 
-[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("room_passing_component", "physics_component", "input_component", "ability_component", "inventory_component", "animation_component", "state_machine", "persistent_id") groups=["Player", "Saveable"]]
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("room_passing_component", "physics_component", "input_component", "ability_component", "inventory_component", "animation_component", "state_machine", "persistent_id", "effect_component") groups=["Player", "Saveable"]]
 collision_layer = 2
 script = ExtResource("1_qgv0r")
 room_passing_component = NodePath("Components/RoomPassingComponent")
@@ -200,15 +401,20 @@ inventory_component = NodePath("Components/InventoryComponent")
 animation_component = NodePath("Components/AnimationComponent")
 state_machine = NodePath("Components/FiniteStateMachineEntity")
 persistent_id = NodePath("PersistentID")
+effect_component = NodePath("Components/ComponentEntityEffect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_wdtix")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1197786865]
-position = Vector2(0, -16)
+unique_name_in_owner = true
 texture = ExtResource("2_34tyn")
+offset = Vector2(0, -16)
 hframes = 4
+
+[node name="AnimationEffects" type="AnimationPlayer" parent="." unique_id=1189743926]
+libraries/ = SubResource("AnimationLibrary_ljdlp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040103791]
 libraries/ = SubResource("AnimationLibrary_yrs2i")
@@ -257,6 +463,12 @@ script = ExtResource("10_ljdlp")
 sprite = NodePath("../../Sprite2D")
 anim_player = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://dedpxmxwga8k4"
+
+[node name="ComponentEntityEffect" type="Node" parent="Components" unique_id=17200673 node_paths=PackedStringArray("sprite")]
+unique_name_in_owner = true
+script = ExtResource("17_nj2os")
+sprite = NodePath("../../Sprite2D")
+metadata/_custom_type_script = "uid://hbt7ld1oeu22"
 
 [node name="FiniteStateMachineEntity" type="Node" parent="Components" unique_id=791986845 node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true

@@ -10,6 +10,13 @@
 [ext_resource type="Script" uid="uid://sdxn04232pti" path="res://assets/entities/components/component_entity_abilities/component_entity_abilities.gd" id="6_cfxg6"]
 [ext_resource type="Script" uid="uid://c44y8xccti57p" path="res://assets/entities/components/component_entity_input/enemy_input_component/component_enemy_platform_input.gd" id="7_ncued"]
 [ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://components/utility/persitent_id/persistent_id.gd" id="10_oyrrt"]
+[ext_resource type="Script" uid="uid://cbmeaqjvg2yjy" path="res://assets/entities/states/component_finite_state_machine_entity.gd" id="11_rqhhw"]
+[ext_resource type="Script" uid="uid://b6c61m6ukqasf" path="res://assets/entities/states/state_entity_ability.gd" id="12_l1m0h"]
+[ext_resource type="Script" uid="uid://bev7r72iik6yo" path="res://assets/entities/states/state_entity_attack.gd" id="13_7efyc"]
+[ext_resource type="Script" uid="uid://c6qgtscdb2xtt" path="res://assets/entities/states/state_entity_idle.gd" id="14_mfdnr"]
+[ext_resource type="Script" uid="uid://bkopjsa4luktr" path="res://assets/entities/states/state_entity_run.gd" id="15_3hgqn"]
+[ext_resource type="Script" uid="uid://c1glvyhh7s2gd" path="res://assets/entities/states/state_entity_jump.gd" id="16_spqt8"]
+[ext_resource type="Script" uid="uid://dedpxmxwga8k4" path="res://assets/entities/components/component_entity_animation/component_entity_animation.gd" id="17_l1m0h"]
 
 [sub_resource type="Resource" id="Resource_b1uqo"]
 script = ExtResource("2_ls67w")
@@ -35,38 +42,38 @@ script = ExtResource("2_ls67w")
 base_value = 10.0
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
-[sub_resource type="Resource" id="Resource_cfe6a"]
-script = ExtResource("2_ls67w")
-base_value = 16.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_jdqu6"]
+[sub_resource type="Resource" id="Resource_4tc8m"]
 script = ExtResource("2_ls67w")
 base_value = 64.0
 is_buffable = true
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
+[sub_resource type="Resource" id="Resource_jdqu6"]
+script = ExtResource("2_ls67w")
+base_value = -1.0
+is_buffable = true
+metadata/_custom_type_script = "uid://4j5ry46byrwh"
+
 [sub_resource type="Resource" id="Resource_16bl4"]
 script = ExtResource("2_ls67w")
-base_value = 600.0
+base_value = 800.0
 is_buffable = true
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
 [sub_resource type="Resource" id="Resource_hce6m"]
 script = ExtResource("2_ls67w")
-base_value = -400.0
+base_value = -310.0
 is_buffable = true
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
-[sub_resource type="Resource" id="Resource_52oos"]
+[sub_resource type="Resource" id="Resource_l1m0h"]
 script = ExtResource("4_3y4si")
 all_stats = Dictionary[int, ExtResource("2_ls67w")]({
 0: SubResource("Resource_b1uqo"),
 1: SubResource("Resource_vkfg8"),
 2: SubResource("Resource_0eorv"),
 3: SubResource("Resource_qd1cg"),
-4: SubResource("Resource_cfe6a"),
+4: SubResource("Resource_4tc8m"),
 5: SubResource("Resource_jdqu6"),
 6: SubResource("Resource_16bl4"),
 7: SubResource("Resource_hce6m")
@@ -245,14 +252,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncued"]
 size = Vector2(500, 200)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "persistent_id") groups=["Saveable"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "animation_component", "state_machine", "persistent_id") groups=["Saveable"]]
 collision_layer = 2
 script = ExtResource("1_482b7")
 physics_component = NodePath("Components/PhysicsComponent")
 input_component = NodePath("Components/EnemyPlatformInputComponent")
 ability_component = NodePath("Components/AbilityComponent")
+animation_component = NodePath("Components/AnimationComponent")
+state_machine = NodePath("Components/ComponentFiniteStateMachineEntity")
 persistent_id = NodePath("PersistentID")
-stats = SubResource("Resource_52oos")
+stats = SubResource("Resource_l1m0h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
 position = Vector2(0, -7)
@@ -274,6 +283,13 @@ metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
 [node name="Components" type="Node" parent="." unique_id=917482435]
 
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=561016695 node_paths=PackedStringArray("sprite", "anim_player")]
+unique_name_in_owner = true
+script = ExtResource("17_l1m0h")
+sprite = NodePath("../../Sprite2D")
+anim_player = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://dedpxmxwga8k4"
+
 [node name="PhysicsComponent" type="Node" parent="Components" unique_id=2139792021 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
 script = ExtResource("4_kek3w")
@@ -285,13 +301,39 @@ unique_name_in_owner = true
 script = ExtResource("6_cfxg6")
 metadata/_custom_type_script = "uid://sdxn04232pti"
 
-[node name="EnemyPlatformInputComponent" type="Node" parent="Components" unique_id=1812664924 node_paths=PackedStringArray("jump_raycasts", "player_detection_area", "entity")]
+[node name="EnemyPlatformInputComponent" type="Node" parent="Components" unique_id=1812664924 node_paths=PackedStringArray("jump_raycasts", "jump_platform_raycasts", "player_detection_area", "entity")]
 unique_name_in_owner = true
 script = ExtResource("7_ncued")
 jump_raycasts = [NodePath("../../Raycasts/JumpRayR"), NodePath("../../Raycasts/JumpRayL")]
+jump_platform_raycasts = [NodePath("../../Raycasts/JumpRayR2"), NodePath("../../Raycasts/JumpRayL2")]
 player_detection_area = NodePath("../../PlayerDetection")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://c44y8xccti57p"
+
+[node name="ComponentFiniteStateMachineEntity" type="Node" parent="Components" unique_id=160350997]
+unique_name_in_owner = true
+script = ExtResource("11_rqhhw")
+metadata/_custom_type_script = "uid://cbmeaqjvg2yjy"
+
+[node name="StateEntityAbility" type="Node" parent="Components/ComponentFiniteStateMachineEntity" unique_id=1187682238]
+script = ExtResource("12_l1m0h")
+metadata/_custom_type_script = "uid://b6c61m6ukqasf"
+
+[node name="StateEntityAttack" type="Node" parent="Components/ComponentFiniteStateMachineEntity" unique_id=1434981458]
+script = ExtResource("13_7efyc")
+metadata/_custom_type_script = "uid://bev7r72iik6yo"
+
+[node name="StateEntityIdle" type="Node" parent="Components/ComponentFiniteStateMachineEntity" unique_id=1985554119]
+script = ExtResource("14_mfdnr")
+metadata/_custom_type_script = "uid://c6qgtscdb2xtt"
+
+[node name="StateEntityRun" type="Node" parent="Components/ComponentFiniteStateMachineEntity" unique_id=1357578287]
+script = ExtResource("15_3hgqn")
+metadata/_custom_type_script = "uid://bkopjsa4luktr"
+
+[node name="StateEntityJump" type="Node" parent="Components/ComponentFiniteStateMachineEntity" unique_id=883028721]
+script = ExtResource("16_spqt8")
+metadata/_custom_type_script = "uid://c1glvyhh7s2gd"
 
 [node name="Raycasts" type="Node2D" parent="." unique_id=755842061]
 
@@ -302,6 +344,14 @@ target_position = Vector2(8, 0)
 [node name="JumpRayL" type="RayCast2D" parent="Raycasts" unique_id=1992473144]
 position = Vector2(-5, -7)
 target_position = Vector2(-8, 0)
+
+[node name="JumpRayR2" type="RayCast2D" parent="Raycasts" unique_id=154944255]
+position = Vector2(6, -1)
+target_position = Vector2(0, 5)
+
+[node name="JumpRayL2" type="RayCast2D" parent="Raycasts" unique_id=465641940]
+position = Vector2(-6, -1)
+target_position = Vector2(0, 5)
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=2028425337]
 visible = false

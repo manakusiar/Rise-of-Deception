@@ -30,13 +30,13 @@ metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
 [sub_resource type="Resource" id="Resource_4tc8m"]
 script = ExtResource("1_4tc8m")
-base_value = 32.0
+base_value = 96.0
 is_buffable = true
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
 [sub_resource type="Resource" id="Resource_jdqu6"]
 script = ExtResource("1_4tc8m")
-base_value = 64.0
+base_value = -1.0
 is_buffable = true
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://4j5ry46byrwh"
 
 [sub_resource type="Resource" id="Resource_hce6m"]
 script = ExtResource("1_4tc8m")
-base_value = -400.0
+base_value = -310.0
 is_buffable = true
 metadata/_custom_type_script = "uid://4j5ry46byrwh"
 

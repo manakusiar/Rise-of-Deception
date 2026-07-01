@@ -9,9 +9,12 @@ extends CharacterBody2D
 @export var animation_component: ComponentEntityAnimation
 @export var state_machine: ComponentFiniteStateMachineEntity
 @export var persistent_id: PersistentID
+@export var effect_component: ComponentEntityEffect
 
 @export_subgroup("Settings")
 @export var stats: EntityStats = preload("uid://bm8ogs5nwbkts")
+
+signal hit_ground(_velocity: Vector2)
 
 #region Saving / Loading
 func setup_data_manager(map: RoomScene) -> void:

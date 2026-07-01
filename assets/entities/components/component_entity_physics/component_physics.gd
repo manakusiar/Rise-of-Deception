@@ -23,7 +23,7 @@ var max_vertical_velocity:
 #region Save & Load
 func Get_Save_Data() -> Dictionary:
 	return {
-		&"velocity": entity.velocity
+		 &"velocity": entity.velocity
 	}
 
 func Load_Save_Data(data: Dictionary) -> void:
@@ -44,7 +44,17 @@ func Handle_Physics(delta: float, movement_direction: Vector2) -> void:
 	if !has_gravity:
 		velocity.y *= 0.9
 	
+	var _past_velocity: Vector2 = velocity
+	var _was_on_floor = entity.is_on_floor()
+	
 	entity.move_and_slide()
+	
+	if entity.is_on_floor() != _was_on_floor:
+		entity.hit_ground.emit(_past_velocity)
+	if max_horizontal_velocity != -1:
+		entity.velocity.x = clamp(entity.velocity.x, -max_horizontal_velocity, max_horizontal_velocity)
+	if max_vertical_velocity != -1:
+		entity.velocity.y = clamp(entity.velocity.y, -max_vertical_velocity, max_vertical_velocity)
 
 func Jump(is_pressed: bool) -> void:
 	if is_pressed and entity.is_on_floor():
