@@ -3,7 +3,7 @@ extends Node2D
 
 @export var room_manager: RoomManager
 @export var player_manager: PlayerManager
-@export var local_camera: ComponentRoomCamera
+@export var local_camera: LocalCamera
 
 var current_map: MapState:
 	get():

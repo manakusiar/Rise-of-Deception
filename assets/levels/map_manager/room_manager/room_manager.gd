@@ -18,18 +18,18 @@ func enable_room(_room_pos: Vector2i, transition: Utils.pixel_transition_types =
 	_room_scene.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	if Global.current_multiplayer_status == Utils.multiplayer_status.SINGLEPLAYER:
-		if transition != Utils.pixel_transition_types.NONE:
+		if transition == Utils.pixel_transition_types.NONE:
+			setup_room_camera(_room_pos)
+		else:
 			_cam_last_room = _room_pos
 			SignalBus.start_transition.emit(Utils.pixel_transition_types.ARROW, transition_dir)
-		else:
-			setup_room_camera(_room_pos)
 
-func setup_room_camera(_room_pos: Vector2i) -> void:
+func setup_room_camera(_room_pos: Vector2i, transition: Utils.pixel_transition_types = Utils.pixel_transition_types.NONE) -> void:
 	var _room_scene = Global.get_room(_room_pos)
-	_room_scene.setup_camera()
+	_room_scene.setup_camera(transition)
 
-func _transition_mid_way() -> void:
-	setup_room_camera(_cam_last_room)
+func _transition_mid_way(transition: Utils.pixel_transition_types) -> void:
+	setup_room_camera(_cam_last_room, transition)
 
 func free_rooms() -> void:
 	for _child in get_children():

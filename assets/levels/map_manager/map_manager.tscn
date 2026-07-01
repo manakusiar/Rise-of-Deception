@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://cnr7liebwxqkw" path="res://assets/levels/map_manager/room_manager/room_manager.gd" id="2_pt7ft"]
 [ext_resource type="Script" uid="uid://b1wwnckhqhoih" path="res://assets/levels/map_manager/player_manager/player_manager.gd" id="3_icghc"]
 [ext_resource type="Script" uid="uid://btnbmkmehl3ys" path="res://assets/levels/map_manager/room_manager/component_player_manager_passage.gd" id="4_pt7ft"]
-[ext_resource type="Script" uid="uid://butfbx4nmf6mv" path="res://assets/levels/component_camera/component_room_camera.gd" id="5_icghc"]
+[ext_resource type="Script" uid="uid://butfbx4nmf6mv" path="res://assets/levels/local_camera/local_camera.gd" id="5_icghc"]
+[ext_resource type="Script" uid="uid://t3ct7q3danxi" path="res://assets/levels/local_camera/components/component_local_camera_movement.gd" id="6_mhvvm"]
 
 [node name="MapManager" type="Node2D" unique_id=450504580 node_paths=PackedStringArray("room_manager", "player_manager")]
 script = ExtResource("1_8mnap")
@@ -24,6 +25,11 @@ map_manager = NodePath("..")
 script = ExtResource("4_pt7ft")
 metadata/_custom_type_script = "uid://btnbmkmehl3ys"
 
-[node name="ComponentRoomCamera" type="Camera2D" parent="." unique_id=1541035082]
+[node name="LocalCamera" type="Camera2D" parent="." unique_id=1541035082 node_paths=PackedStringArray("movement_component")]
 script = ExtResource("5_icghc")
-metadata/_custom_type_script = "uid://butfbx4nmf6mv"
+movement_component = NodePath("ComponentLocalCameraMovement")
+
+[node name="ComponentLocalCameraMovement" type="Node" parent="LocalCamera" unique_id=59438727 node_paths=PackedStringArray("local_camera")]
+script = ExtResource("6_mhvvm")
+local_camera = NodePath("..")
+metadata/_custom_type_script = "uid://t3ct7q3danxi"

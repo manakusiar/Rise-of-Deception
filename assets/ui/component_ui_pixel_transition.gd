@@ -41,7 +41,7 @@ func start_transition(transition_type: Utils.pixel_transition_types, direction: 
 		time
 	)
 	
-	progress_tween.tween_callback(_phase_two_setup)
+	progress_tween.tween_callback(_phase_two_setup.bind(transition_type))
 	
 	progress_tween.tween_method(
 		_set_progress,
@@ -50,7 +50,7 @@ func start_transition(transition_type: Utils.pixel_transition_types, direction: 
 		time
 	)
 	
-	progress_tween.tween_callback(_phase_two_end)
+	progress_tween.tween_callback(_phase_two_end.bind(transition_type))
 
 func _set_progress(value: float) -> void:
 	current_transition.object.material.set_shader_parameter(
@@ -58,13 +58,13 @@ func _set_progress(value: float) -> void:
 		value
 	)
 
-func _phase_two_setup() -> void:
-	SignalBus.transition_mid_way.emit()
+func _phase_two_setup(transition: Utils.pixel_transition_types) -> void:
+	SignalBus.transition_mid_way.emit(transition)
 	_reset_current_transition()
 	_set_fade_in(false)
 
-func _phase_two_end() -> void:
-	SignalBus.transition_ended.emit()
+func _phase_two_end(transition: Utils.pixel_transition_types) -> void:
+	SignalBus.transition_ended.emit(transition)
 	#_reset_current_transition()
 
 func _reset_current_transition() -> void:

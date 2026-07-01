@@ -7,7 +7,7 @@ var external_camera: ExternalCamera:
 	set(value):
 		external_camera_updated.emit(value)
 		external_camera = value
-var internal_camera: ComponentRoomCamera:
+var internal_camera: LocalCamera:
 	set(value):
 		internal_camera_updated.emit(value)
 		internal_camera = value

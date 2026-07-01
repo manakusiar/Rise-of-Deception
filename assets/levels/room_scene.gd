@@ -41,21 +41,19 @@ func _ready() -> void:
 		else:
 			push_error("No passage set: ",_passage_dir)
 
-func setup_camera() -> void:
-	var _camera: ComponentRoomCamera = Global.internal_camera
+func setup_camera(transition: Utils.pixel_transition_types) -> void:
+	var _camera: LocalCamera = Global.internal_camera
 	if _camera and world_boundries:
 		var _pos = world_boundries.global_position
 		var _size = world_boundries.size
 		
-		_camera.movement_is_enabled = false
-		
-		_camera.Set_Limits(
+		_camera.room_setup(
 			_pos.x,
 			_pos.x + _size.x,
 			_pos.y,
-			_pos.y + _size.y
+			_pos.y + _size.y,
+			transition
 		)
-		_camera.move_to_goal.call_deferred()
 
 func setup_passages(left_open: bool, right_open: bool, top_open: bool, bottom_open: bool) -> void:
 	passages[RoomPassage.path_direction.LEFT].Setup(left_open, self)
