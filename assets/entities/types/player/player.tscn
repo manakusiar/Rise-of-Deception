@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://ciw3lcn0jn2iy"]
 
-[ext_resource type="Script" uid="uid://dvjhkfp0m5gba" path="res://assets/entities/states/player/player.gd" id="1_5iwxj"]
-[ext_resource type="Texture2D" uid="uid://dahv58ftrcj7" path="res://assets/entities/states/player/sprites/player_idle-Sheet.png" id="2_c5dgg"]
-[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://assets/entities/states/player/sprites/player_run-Sheet.png" id="3_n7u7w"]
-[ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://components/utility/persitent_id/persistent_id.gd" id="4_hbso0"]
-[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://assets/entities/components/component_entity_physics/component_physics.gd" id="5_5iwxj"]
-[ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://assets/entities/components/component_entity_input/component_player_input.gd" id="6_5iwxj"]
-[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://assets/entities/components/component_entity_abilities/component_entity_abilities.gd" id="7_5iwxj"]
-[ext_resource type="Script" uid="uid://wrf4grbly5lk" path="res://assets/entities/components/component_entity_inventory/component_inventory.gd" id="8_5iwxj"]
-[ext_resource type="Script" uid="uid://cwngghddmtbeb" path="res://assets/entities/components/component_player_passage/component_player_passage.gd" id="9_5iwxj"]
+[ext_resource type="Script" uid="uid://dvjhkfp0m5gba" path="res://assets/entities/types/player/player.gd" id="1_qgv0r"]
+[ext_resource type="Texture2D" uid="uid://dahv58ftrcj7" path="res://assets/entities/types/player/sprites/player_idle-Sheet.png" id="2_34tyn"]
+[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://assets/entities/types/player/sprites/player_run-Sheet.png" id="3_b4gis"]
+[ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://components/utility/persitent_id/persistent_id.gd" id="4_j5ity"]
+[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://assets/entities/components/component_entity_physics/component_physics.gd" id="5_iwcbi"]
+[ext_resource type="Script" uid="uid://s4kpitl1pnpm" path="res://assets/entities/components/component_entity_input/component_player_input.gd" id="6_a65yn"]
+[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://assets/entities/components/component_entity_abilities/component_entity_abilities.gd" id="7_nj2os"]
+[ext_resource type="Script" uid="uid://wrf4grbly5lk" path="res://assets/entities/components/component_entity_inventory/component_inventory.gd" id="8_i06yf"]
+[ext_resource type="Script" uid="uid://cwngghddmtbeb" path="res://assets/entities/components/component_player_passage/component_player_passage.gd" id="9_3sqvs"]
+[ext_resource type="Script" uid="uid://dedpxmxwga8k4" path="res://assets/entities/components/component_entity_animation/component_entity_animation.gd" id="10_ljdlp"]
+[ext_resource type="Script" uid="uid://cbmeaqjvg2yjy" path="res://assets/entities/states/component_finite_state_machine_entity.gd" id="11_a65yn"]
+[ext_resource type="Script" uid="uid://bev7r72iik6yo" path="res://assets/entities/states/state_entity_attack.gd" id="12_iwcbi"]
+[ext_resource type="Script" uid="uid://b6c61m6ukqasf" path="res://assets/entities/states/state_entity_ability.gd" id="13_a65yn"]
+[ext_resource type="Script" uid="uid://c6qgtscdb2xtt" path="res://assets/entities/states/state_entity_idle.gd" id="14_nj2os"]
+[ext_resource type="Script" uid="uid://c1glvyhh7s2gd" path="res://assets/entities/states/state_entity_jump.gd" id="15_i06yf"]
+[ext_resource type="Script" uid="uid://bkopjsa4luktr" path="res://assets/entities/states/state_entity_run.gd" id="16_a65yn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
 size = Vector2(16, 19)
@@ -25,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_c5dgg")]
+"values": [ExtResource("2_34tyn")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -79,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_c5dgg")]
+"values": [ExtResource("2_34tyn")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -169,7 +176,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_n7u7w")]
+"values": [ExtResource("3_b4gis")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yrs2i"]
@@ -182,13 +189,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1kv5"]
 size = Vector2(10, 8)
 
-[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("room_passing_component", "physics_component", "input_component", "ability_component", "persistent_id") groups=["Player", "Saveable"]]
+[node name="Player" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("room_passing_component", "physics_component", "input_component", "ability_component", "inventory_component", "animation_component", "state_machine", "persistent_id") groups=["Player", "Saveable"]]
 collision_layer = 2
-script = ExtResource("1_5iwxj")
+script = ExtResource("1_qgv0r")
 room_passing_component = NodePath("Components/RoomPassingComponent")
 physics_component = NodePath("Components/PhysicsComponent")
 input_component = NodePath("Components/PlayerInputComponent")
 ability_component = NodePath("Components/AbilityComponent")
+inventory_component = NodePath("Components/InventoryComponent")
+animation_component = NodePath("Components/AnimationComponent")
+state_machine = NodePath("Components/FiniteStateMachineEntity")
 persistent_id = NodePath("PersistentID")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
@@ -197,7 +207,7 @@ shape = SubResource("RectangleShape2D_wdtix")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1197786865]
 position = Vector2(0, -16)
-texture = ExtResource("2_c5dgg")
+texture = ExtResource("2_34tyn")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040103791]
@@ -205,7 +215,7 @@ libraries/ = SubResource("AnimationLibrary_yrs2i")
 autoplay = &"idle"
 
 [node name="PersistentID" type="Node" parent="." unique_id=1030843107]
-script = ExtResource("4_hbso0")
+script = ExtResource("4_j5ity")
 unique_id = &"ct2h8pmhruult3f7"
 metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
@@ -213,34 +223,66 @@ metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
 [node name="PhysicsComponent" type="Node" parent="Components" unique_id=2139792021 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
-script = ExtResource("5_5iwxj")
+script = ExtResource("5_iwcbi")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://dyvgnrsv0rgiw"
 
 [node name="PlayerInputComponent" type="Node" parent="Components" unique_id=1186757926 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
-script = ExtResource("6_5iwxj")
+script = ExtResource("6_a65yn")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://s4kpitl1pnpm"
 
 [node name="AbilityComponent" type="Node" parent="Components" unique_id=1350653665]
 unique_name_in_owner = true
-script = ExtResource("7_5iwxj")
+script = ExtResource("7_nj2os")
 metadata/_custom_type_script = "uid://sdxn04232pti"
 
 [node name="InventoryComponent" type="Node" parent="Components" unique_id=772012437 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
-script = ExtResource("8_5iwxj")
-inventory = null
+script = ExtResource("8_i06yf")
 entity = NodePath("../..")
 metadata/_custom_type_script = "uid://wrf4grbly5lk"
 
 [node name="RoomPassingComponent" type="Node" parent="Components" unique_id=2005252721 node_paths=PackedStringArray("player", "area")]
 unique_name_in_owner = true
-script = ExtResource("9_5iwxj")
+script = ExtResource("9_3sqvs")
 player = NodePath("../..")
 area = NodePath("../../Areas/PassageArea")
 metadata/_custom_type_script = "uid://cwngghddmtbeb"
+
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=1345616704 node_paths=PackedStringArray("sprite", "anim_player")]
+unique_name_in_owner = true
+script = ExtResource("10_ljdlp")
+sprite = NodePath("../../Sprite2D")
+anim_player = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://dedpxmxwga8k4"
+
+[node name="FiniteStateMachineEntity" type="Node" parent="Components" unique_id=791986845 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("11_a65yn")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://cbmeaqjvg2yjy"
+
+[node name="Attack" type="Node" parent="Components/FiniteStateMachineEntity" unique_id=1911591383]
+script = ExtResource("12_iwcbi")
+metadata/_custom_type_script = "uid://bev7r72iik6yo"
+
+[node name="Ability" type="Node" parent="Components/FiniteStateMachineEntity" unique_id=1571098812]
+script = ExtResource("13_a65yn")
+metadata/_custom_type_script = "uid://b6c61m6ukqasf"
+
+[node name="Idle" type="Node" parent="Components/FiniteStateMachineEntity" unique_id=360419635]
+script = ExtResource("14_nj2os")
+metadata/_custom_type_script = "uid://c6qgtscdb2xtt"
+
+[node name="Jump" type="Node" parent="Components/FiniteStateMachineEntity" unique_id=392637083]
+script = ExtResource("15_i06yf")
+metadata/_custom_type_script = "uid://c1glvyhh7s2gd"
+
+[node name="Run" type="Node" parent="Components/FiniteStateMachineEntity" unique_id=1913045492]
+script = ExtResource("16_a65yn")
+metadata/_custom_type_script = "uid://bkopjsa4luktr"
 
 [node name="Areas" type="Node2D" parent="." unique_id=813453677]
 

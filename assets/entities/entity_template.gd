@@ -6,17 +6,12 @@ extends CharacterBody2D
 @export var input_component: ComponentEntityInput
 @export var ability_component: ComponentEntityAbilities
 @export var inventory_component: ComponentEntityInventory
+@export var animation_component: ComponentEntityAnimation
+@export var state_machine: ComponentFiniteStateMachineEntity
 @export var persistent_id: PersistentID
 
 @export_subgroup("Settings")
 @export var stats: EntityStats = preload("uid://bm8ogs5nwbkts")
-
-
-func _ready() -> void:
-	if input_component:
-		input_component.Jump.connect(_input_jump)
-		input_component.Attack.connect(_input_attack)
-		input_component.Ability.connect(_input_ability)
 
 #region Saving / Loading
 func setup_data_manager(map: RoomScene) -> void:
@@ -61,15 +56,19 @@ func _game_loading(room_data: RoomState) -> void:
 			stats.Load_Save_Data(_data.stats)
 #endregion
 
+func _ready() -> void:
+	if state_machine:
+		state_machine.entity = self
+		state_machine.setup()
+
+func _process(delta: float) -> void:
+	if state_machine:
+		state_machine.update(delta)
+
 func _physics_process(delta: float) -> void:
-	if physics_component and input_component:
-		physics_component.Handle_Physics(delta, input_component.Get_Movement_Direction())
+	if state_machine:
+		state_machine.physics_update(delta)
 
-func _input_jump(is_pressed: bool) -> void:
-	physics_component.Jump(is_pressed)
-func _input_attack(is_pressed: bool) -> void:
-	physics_component.Attack(is_pressed)
-
-func _input_ability(is_pressed: bool, ability_name: StringName) -> void:
-	if is_pressed:
-		ability_component.try_cast(ability_name)
+func _unhandled_input(event: InputEvent) -> void:
+	if state_machine:
+		state_machine.handle_input(event)

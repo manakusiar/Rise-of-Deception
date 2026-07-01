@@ -1,80 +1,15 @@
-[gd_scene format=3 uid="uid://dgegpg6nxyv0l"]
+[gd_scene format=3 uid="uid://cvwdh8folhjmp"]
 
-[ext_resource type="Script" uid="uid://d0m11inhhnfrd" path="res://assets/entities/states/enemy/enemy.gd" id="1_482b7"]
-[ext_resource type="Script" uid="uid://4j5ry46byrwh" path="res://assets/entities/components/component_entity_stats/stat.gd" id="2_ls67w"]
-[ext_resource type="Texture2D" uid="uid://bdenyrbnj1838" path="res://assets/entities/states/enemy/sprites/enemy_idle_sheet.png" id="3_482b7"]
-[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://assets/entities/states/player/sprites/player_run-Sheet.png" id="3_kcewl"]
-[ext_resource type="Curve" uid="uid://brqhenrycwvri" path="res://assets/entities/components/component_entity_stats/stat_curves/max_hp_curve.tres" id="3_oyrrt"]
-[ext_resource type="Script" uid="uid://cioghh6igp4ds" path="res://assets/entities/components/component_entity_stats/entity_stats.gd" id="4_3y4si"]
-[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://assets/entities/components/component_entity_physics/component_physics.gd" id="4_kek3w"]
-[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://assets/entities/components/component_entity_abilities/component_entity_abilities.gd" id="6_cfxg6"]
-[ext_resource type="Script" uid="uid://c44y8xccti57p" path="res://assets/entities/components/component_entity_input/enemy_input_component/component_enemy_platform_input.gd" id="7_ncued"]
-[ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://components/utility/persitent_id/persistent_id.gd" id="10_oyrrt"]
-
-[sub_resource type="Resource" id="Resource_b1uqo"]
-script = ExtResource("2_ls67w")
-base_value = 10.0
-is_buffable = true
-is_scalable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_vkfg8"]
-script = ExtResource("2_ls67w")
-base_value = 10.0
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_0eorv"]
-script = ExtResource("2_ls67w")
-base_value = 10.0
-is_buffable = true
-is_scalable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_qd1cg"]
-script = ExtResource("2_ls67w")
-base_value = 10.0
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_cfe6a"]
-script = ExtResource("2_ls67w")
-base_value = 16.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_jdqu6"]
-script = ExtResource("2_ls67w")
-base_value = 64.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_16bl4"]
-script = ExtResource("2_ls67w")
-base_value = 600.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_hce6m"]
-script = ExtResource("2_ls67w")
-base_value = -400.0
-is_buffable = true
-metadata/_custom_type_script = "uid://4j5ry46byrwh"
-
-[sub_resource type="Resource" id="Resource_52oos"]
-script = ExtResource("4_3y4si")
-all_stats = Dictionary[int, ExtResource("2_ls67w")]({
-0: SubResource("Resource_b1uqo"),
-1: SubResource("Resource_vkfg8"),
-2: SubResource("Resource_0eorv"),
-3: SubResource("Resource_qd1cg"),
-4: SubResource("Resource_cfe6a"),
-5: SubResource("Resource_jdqu6"),
-6: SubResource("Resource_16bl4"),
-7: SubResource("Resource_hce6m")
-})
-metadata/_custom_type_script = "uid://cioghh6igp4ds"
+[ext_resource type="Script" uid="uid://bi38ke53ksjqe" path="res://assets/entities/types/flying_enemy/flying_enemy.gd" id="1_5bxrj"]
+[ext_resource type="Texture2D" uid="uid://b4wym735q62d6" path="res://assets/entities/types/flying_enemy/sprites/flying_enemy_idle_sheet.png" id="3_k6cn0"]
+[ext_resource type="Texture2D" uid="uid://qch2w5lih5sd" path="res://assets/entities/types/player/sprites/player_run-Sheet.png" id="4_d5i0o"]
+[ext_resource type="Script" uid="uid://dyvgnrsv0rgiw" path="res://assets/entities/components/component_entity_physics/component_physics.gd" id="5_07baq"]
+[ext_resource type="Script" uid="uid://dudc6pu6l8bid" path="res://components/utility/persitent_id/persistent_id.gd" id="5_brlqf"]
+[ext_resource type="Script" uid="uid://n7lwy8lxsbes" path="res://assets/entities/components/component_entity_input/enemy_input_component/component_enemy_flying_input.gd" id="6_5bxrj"]
+[ext_resource type="Script" uid="uid://sdxn04232pti" path="res://assets/entities/components/component_entity_abilities/component_entity_abilities.gd" id="6_i34wm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtix"]
-size = Vector2(10, 14)
+size = Vector2(10, 11)
 
 [sub_resource type="Animation" id="Animation_omgnn"]
 length = 0.001
@@ -88,7 +23,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_482b7")]
+"values": [ExtResource("3_k6cn0")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -142,7 +77,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_482b7")]
+"values": [ExtResource("3_k6cn0")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -232,7 +167,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_kcewl")]
+"values": [ExtResource("4_d5i0o")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yrs2i"]
@@ -245,63 +180,48 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncued"]
 size = Vector2(500, 200)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1538659535 node_paths=PackedStringArray("physics_component", "input_component", "ability_component", "persistent_id") groups=["Saveable"]]
+[node name="FlyingEnemy" type="CharacterBody2D" unique_id=1538659535 groups=["Saveable"]]
 collision_layer = 2
-script = ExtResource("1_482b7")
-physics_component = NodePath("Components/PhysicsComponent")
-input_component = NodePath("Components/EnemyPlatformInputComponent")
-ability_component = NodePath("Components/AbilityComponent")
-persistent_id = NodePath("PersistentID")
-stats = SubResource("Resource_52oos")
+script = ExtResource("1_5bxrj")
+
+[node name="PersistentID" type="Node" parent="." unique_id=1162751935]
+script = ExtResource("5_brlqf")
+unique_id = &"ibq269gyl5kcape6"
+metadata/_custom_type_script = "uid://dudc6pu6l8bid"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596279790]
-position = Vector2(0, -7)
+position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_wdtix")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1197786865]
-position = Vector2(0, -16)
-texture = ExtResource("3_482b7")
+position = Vector2(0, -13)
+texture = ExtResource("3_k6cn0")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1040103791]
 libraries/ = SubResource("AnimationLibrary_yrs2i")
 autoplay = &"idle"
 
-[node name="PersistentID" type="Node" parent="." unique_id=543793119]
-script = ExtResource("10_oyrrt")
-unique_id = &"xjc6ye3zzewka20q"
-metadata/_custom_type_script = "uid://dudc6pu6l8bid"
-
 [node name="Components" type="Node" parent="." unique_id=917482435]
 
 [node name="PhysicsComponent" type="Node" parent="Components" unique_id=2139792021 node_paths=PackedStringArray("entity")]
 unique_name_in_owner = true
-script = ExtResource("4_kek3w")
+script = ExtResource("5_07baq")
 entity = NodePath("../..")
+has_gravity = false
 metadata/_custom_type_script = "uid://dyvgnrsv0rgiw"
 
 [node name="AbilityComponent" type="Node" parent="Components" unique_id=1350653665]
 unique_name_in_owner = true
-script = ExtResource("6_cfxg6")
+script = ExtResource("6_i34wm")
 metadata/_custom_type_script = "uid://sdxn04232pti"
 
-[node name="EnemyPlatformInputComponent" type="Node" parent="Components" unique_id=1812664924 node_paths=PackedStringArray("jump_raycasts", "player_detection_area", "entity")]
+[node name="EnemyFlyingInputComponent" type="Node" parent="Components" unique_id=182244703 node_paths=PackedStringArray("player_detection_area", "entity")]
 unique_name_in_owner = true
-script = ExtResource("7_ncued")
-jump_raycasts = [NodePath("../../Raycasts/JumpRayR"), NodePath("../../Raycasts/JumpRayL")]
+script = ExtResource("6_5bxrj")
 player_detection_area = NodePath("../../PlayerDetection")
 entity = NodePath("../..")
-metadata/_custom_type_script = "uid://c44y8xccti57p"
-
-[node name="Raycasts" type="Node2D" parent="." unique_id=755842061]
-
-[node name="JumpRayR" type="RayCast2D" parent="Raycasts" unique_id=530742300]
-position = Vector2(5, -7)
-target_position = Vector2(8, 0)
-
-[node name="JumpRayL" type="RayCast2D" parent="Raycasts" unique_id=1992473144]
-position = Vector2(-5, -7)
-target_position = Vector2(-8, 0)
+metadata/_custom_type_script = "uid://n7lwy8lxsbes"
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=2028425337]
 visible = false

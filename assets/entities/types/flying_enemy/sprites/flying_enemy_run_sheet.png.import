@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdenyrbnj1838"
-path="res://.godot/imported/enemy_idle_sheet.png-1335ba063837703ab47c36fc4b5835c5.ctex"
+uid="uid://tbse6pbhwhlk"
+path="res://.godot/imported/flying_enemy_run_sheet.png-2941adc72fb4a322a758ee1ef0119b08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entities/states/enemy/sprites/enemy_idle_sheet.png"
-dest_files=["res://.godot/imported/enemy_idle_sheet.png-1335ba063837703ab47c36fc4b5835c5.ctex"]
+source_file="res://assets/entities/types/flying_enemy/sprites/flying_enemy_run_sheet.png"
+dest_files=["res://.godot/imported/flying_enemy_run_sheet.png-2941adc72fb4a322a758ee1ef0119b08.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://csy1pyeuajw0y"]
 
 [ext_resource type="Script" uid="uid://bawnen6pyi2eh" path="res://assets/levels/room_scene.gd" id="1_etdx7"]
-[ext_resource type="PackedScene" uid="uid://dgegpg6nxyv0l" path="res://assets/entities/states/enemy/enemy.tscn" id="2_5u6jf"]
+[ext_resource type="PackedScene" uid="uid://dgegpg6nxyv0l" path="res://assets/entities/types/enemy/enemy.tscn" id="2_5u6jf"]
 [ext_resource type="TileSet" uid="uid://b3mu7teosgmps" path="res://assets/levels/tilesets/base_wall/base_wall_tileset.tres" id="2_pbdjj"]
 [ext_resource type="PackedScene" uid="uid://bx5lmrk66xmo3" path="res://assets/levels/rooms/base_room/passage/passage.tscn" id="3_etdx7"]
 [ext_resource type="PackedScene" uid="uid://x7aj76n2xwso" path="res://assets/levels/rooms/base_room/world_boundries/world_boundries.tscn" id="3_vksqo"]
@@ -17,7 +17,7 @@ passages = {
 3: NodePath("Passages/MapPassageBottom")
 }
 world_boundries = NodePath("WorldBoundries")
-player_spawn_location = Vector2(88, 352)
+player_spawn_location = Vector2(88, 336)
 
 [node name="Enemy" type="Node2D" parent="." unique_id=201051858]
 

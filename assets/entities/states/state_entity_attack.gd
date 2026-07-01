@@ -1,0 +1,2 @@
+class_name StateEntityAttack
+extends StateEntity

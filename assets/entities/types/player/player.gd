@@ -3,6 +3,7 @@ extends Entity
 
 @export var room_passing_component: ComponentPlayerPassage
 
+#region Saving & Loading
 func _game_saving(room_data: RoomState) -> void:
 	var _player_data = DataManager.data_master.player_data
 	var _id = persistent_id.unique_id
@@ -42,3 +43,4 @@ func _game_loading(room_data: RoomState) -> void:
 			stats.Load_Save_Data(_data.stats)
 		if room_passing_component:
 			room_passing_component.Load_Save_Data(_data.room_passage)
+#endregion
